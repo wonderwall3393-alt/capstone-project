@@ -222,7 +222,7 @@ main .package-section .choice-package {
 
 main .package-section .choice-package .package1 {
     background-color: #ffff;
-    padding: 50px 2.5rem;
+    padding: 50px 4.5rem;
     border-radius: 11px;
     text-align: center;
     color: #EB3F3F;
@@ -246,7 +246,7 @@ main .package-section .choice-package .package1 i {
 
 main .package-section .choice-package .package2 {
     background-color: #ffff;
-    padding: 50px 2.9rem;
+    padding: 50px 4.9rem;
     border-radius: 11px;
     text-align: center;
     color: #EB3F3F;
@@ -270,7 +270,7 @@ main .package-section .choice-package .package2 i {
 
 main .package-section .choice-package .package3 {
     background-color: #ffff;
-    padding: 50px 2.9rem;
+    padding: 50px 4.9rem;
     border-radius: 11px;
     text-align: center;
     color: #EB3F3F;
