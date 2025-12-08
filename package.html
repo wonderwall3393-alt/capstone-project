@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Paket Internet - Sphinx Net</title>
+    <link rel="shortcut icon" href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="./style/package.css">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/responsive.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container" id="logoContainer">
+            <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40">
+            <h3>Sphinx <span>Net.</span></h3>
+        </div>
+        <nav class="navigasi-container" id="navContainer">
+            <ul>
+                <li><a href="./beranda.html">Beranda</a></li>
+                <li><a href="./package.html">Paket</a></li>
+                <li><a href="">Informasi</a></li>
+                <li><a href="">Tentang Kita</a></li>
+            </ul>
+            <div class="button-SU-SI" id="buttonSU_SI">
+                <a class="button-login" href="./login.html">Masuk</a>
+                <a class="button-signup" href="./signup.html">Daftar</a>
+            </div>
+        </nav>
+        <label class="box1" id="box1">
+            <input type="checkbox" id="menu">
+        </label>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Title -->
+        <div class="page-title" id="pageTitle">
+            <h1>Koleksi Paket</h1>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="package-navigation">
+            <button class="nav-tab" onclick="showPackage('sim-credit')">Paket Pulsa</button>
+            <button class="nav-tab" onclick="showPackage('wifi')">Paket Wifi</button>
+            <button class="nav-tab active" onclick="showPackage('quota')">Paket Kuota</button>
+        </div>
+
+        <!-- SIM Credit Package Content -->
+        <div id="sim-credit" class="package-content">
+            <!-- Paket Pulsa Reguler -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket Pulsa Reguler</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">Rp10.000</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp11.000</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">Rp25.000</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp26.500</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">Rp50.000</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp51.500</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">Rp100.000</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp101.500</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket Pulsa Promo -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket Pulsa Promo</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">Rp50.000</div>
+                        <div class="validity">60 Hari</div>
+                        <div class="old-price">Rp55.000</div>
+                        <div class="price">Rp50.000</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">Rp100.000</div>
+                        <div class="validity">60 Hari</div>
+                        <div class="old-price">Rp110.000</div>
+                        <div class="price">Rp99.000</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">Rp150.000</div>
+                        <div class="validity">90 Hari</div>
+                        <div class="old-price">Rp165.000</div>
+                        <div class="price">Rp149.000</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">Rp200.000</div>
+                        <div class="validity">90 Hari</div>
+                        <div class="old-price">Rp220.000</div>
+                        <div class="price">Rp195.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket Telepon -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket Telepon</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">100 Menit</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp20.000</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">250 Menit</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp45.000</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">500 Menit</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp80.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket SMS -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket SMS</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">200 SMS</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp15.000</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">500 SMS</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp30.000</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">1000 SMS</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp50.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WiFi Package Content -->
+        <div id="wifi" class="package-content">
+            <!-- Paket WiFi Rumah -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket WiFi Rumah</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">10 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp200.000</div>
+                        <div class="price-per-gb">Unlimited</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">20 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp300.000</div>
+                        <div class="price-per-gb">Unlimited</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">50 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp450.000</div>
+                        <div class="price-per-gb">Unlimited</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">100 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp650.000</div>
+                        <div class="price-per-gb">Unlimited</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket WiFi Bisnis -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket WiFi Bisnis</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">50 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="old-price">Rp550.000</div>
+                        <div class="price">Rp500.000</div>
+                        <div class="price-per-gb">Dedicated</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">100 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="old-price">Rp850.000</div>
+                        <div class="price">Rp800.000</div>
+                        <div class="price-per-gb">Dedicated</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">200 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="old-price">Rp1.500.000</div>
+                        <div class="price">Rp1.400.000</div>
+                        <div class="price-per-gb">Dedicated</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket WiFi Premium -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket WiFi Premium</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">300 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp2.000.000</div>
+                        <div class="price-per-gb">Fiber Optic</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">500 Mbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp3.000.000</div>
+                        <div class="price-per-gb">Fiber Optic</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">1 Gbps</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp5.000.000</div>
+                        <div class="price-per-gb">Fiber Optic</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quota Package Content -->
+        <div id="quota" class="package-content active">
+            <!-- Hot Promo -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Hot Promo</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">15 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp50.000</div>
+                        <div class="price-per-gb">Rp3.333/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">25 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp70.000</div>
+                        <div class="price-per-gb">Rp2.800/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">35 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp90.000</div>
+                        <div class="price-per-gb">Rp2.571/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">50 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp125.000</div>
+                        <div class="price-per-gb">Rp2.500/GB</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Super Seru Promo -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Super Seru Promo</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">100 GB</div>
+                        <div class="validity">28 Hari</div>
+                        <div class="old-price">Rp160.000</div>
+                        <div class="price">Rp155.000</div>
+                        <div class="price-per-gb">Rp1.550/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">123 GB</div>
+                        <div class="validity">28 Hari</div>
+                        <div class="old-price">Rp190.000</div>
+                        <div class="price">Rp185.000</div>
+                        <div class="price-per-gb">Rp1.504/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">170 GB</div>
+                        <div class="validity">28 Hari</div>
+                        <div class="old-price">Rp305.000</div>
+                        <div class="price">Rp255.000</div>
+                        <div class="price-per-gb">Rp1.500/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">200 GB</div>
+                        <div class="validity">28 Hari</div>
+                        <div class="old-price">Rp350.000</div>
+                        <div class="price">Rp299.000</div>
+                        <div class="price-per-gb">Rp1.495/GB</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket Malam -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket Malam</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">30 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp45.000</div>
+                        <div class="price-per-gb">Rp1.500/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">50 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp65.000</div>
+                        <div class="price-per-gb">Rp1.300/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">75 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp85.000</div>
+                        <div class="price-per-gb">Rp1.133/GB</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket Gaming -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket Gaming</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">40 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp95.000</div>
+                        <div class="price-per-gb">Rp2.375/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">60 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp135.000</div>
+                        <div class="price-per-gb">Rp2.250/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">80 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp175.000</div>
+                        <div class="price-per-gb">Rp2.188/GB</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket Streaming -->
+            <div class="promo-section">
+                <div class="section-header">
+                    <div class="section-title">Paket Streaming</div>
+                    <div class="view-all">Lihat Semua</div>
+                </div>
+                <div class="cards-container">
+                    <div class="package-card">
+                        <div class="quota">35 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp80.000</div>
+                        <div class="price-per-gb">Rp2.285/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">55 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp110.000</div>
+                        <div class="price-per-gb">Rp2.000/GB</div>
+                    </div>
+                    <div class="package-card">
+                        <div class="quota">75 GB</div>
+                        <div class="validity">30 Hari</div>
+                        <div class="price">Rp145.000</div>
+                        <div class="price-per-gb">Rp1.933/GB</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo-container">
+                <img src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" alt="logo" height="150">
+                <h2 class="text-logo">Sphinx <span class="span1">Net.</span></h2>
+            </div>
+            <div class="footer-content-container">
+                <div class="footer-list">
+                    <div class="list1">
+                        <p>Paket</p>
+                        <ul>
+                            <li><a href="">paket pulsa</a></li>
+                            <li><a href="">paket wifi</a></li>
+                            <li><a href="">paket kuota</a></li>
+                        </ul>
+                    </div>
+                    <div class="list2">
+                        <p>Layanan</p>
+                        <ul>
+                            <li><a href="">masuk</a></li>
+                            <li><a href="">kontak kami</a></li>
+                            <li><a href="">tentang kami</a></li>
+                        </ul>
+                    </div>
+                    <div class="list3">
+                        <p>Infomasi</p>
+                        <ul>
+                            <li><a href="">promo</a></li>
+                            <li><a href="">berita</a></li>
+                            <li><a href="">FAQ</a></li>
+                            <li><a href="">terms & conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lisence">
+                    <p>Jl. Raya Siman, Dusun I, Demangan,<br> Kec. Siman, Kabupaten Ponorogo, <br>Jawa Timur 63471</p>
+                    <p>© 2025 Sphinx Net. All Rights Reserved.</p>
+                    <div class="up-button">
+                        <a href="#pageTitle"><i class="fa-solid fa-chevron-up"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./script/script.js"></script>
+    <script src="./script/animation.js"></script>
+</body>
+
+</html>

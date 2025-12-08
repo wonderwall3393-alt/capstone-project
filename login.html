@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sphinx Net - Login</title>
+    <link rel="stylesheet" href="./style/login-style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="logo">
+                <img src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" alt="Sphinx Net Logo" class="logo-icon">
+                <div class="logo-text">Sphinx <span>Net</span></div>
+            </div>
+
+            <h1>Hallo!</h1>
+            <div class="subtitle">Selamat Datang kembali</div>
+
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Username" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        <span>Ingatkan saya</span>
+                    </label>
+                    <a href="#" class="forgot-password">Lupa Kata Sandi?</a>
+                </div>
+
+                <button type="submit" class="sign-in-btn">Masuk</button>
+            </form>
+
+            <div class="signup-link">
+                Belum punya akun? <a href="./signup.html">Daftar</a>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="logo-overlay">
+                <img src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" alt="Sphinx Net Logo" class="logo-icon">
+                <div class="logo-text">Sphinx <span>Net</span></div>
+            </div>
+            <img src="./assets/images/Businessman communicate on the phone _ premium….jpeg" alt="Professional businessman">
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            // Add your login logic here
+            console.log('Form submitted');
+        }
+    </script>
+</body>
+</html>

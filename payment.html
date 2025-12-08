@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - Sphinx Net</title>
+    <link rel="stylesheet" href="./style/payment.css">
+    <link rel="shortcut icon" href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pembayaran Paket</h1>
+            <p>Pilih metode pembayaran dan selesaikan transaksi Anda</p>
+        </div>
+
+        <div class="content">
+            <div class="package-summary">
+                <h2>Detail Paket</h2>
+                <div class="package-info">
+                    <div class="package-detail">
+                        <label>Paket</label>
+                        <div class="value" id="packageQuota">15 GB</div>
+                    </div>
+                    <div class="package-detail">
+                        <label>Masa Aktif</label>
+                        <div class="value" id="packageValidity">30 Hari</div>
+                    </div>
+                    <div class="total-price">
+                        <label>Total Pembayaran</label>
+                        <div class="value" id="totalPrice">Rp50.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <div class="section-title">Informasi Pelanggan</div>
+                <div class="form-group">
+                    <label>Nomor Telepon</label>
+                    <input type="tel" id="phoneNumber" placeholder="08xxxxxxxxxx" maxlength="13">
+                </div>
+                <div class="form-group">
+                    <label>Email (Opsional)</label>
+                    <input type="email" id="email" placeholder="email@example.com">
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <div class="section-title">Metode Pembayaran</div>
+                <div class="payment-methods">
+                    <div class="payment-method" onclick="selectPaymentMethod('bank')">
+                        <input type="radio" name="payment" id="paymentBank">
+                        <div class="payment-icon">🏦</div>
+                        <div class="payment-info">
+                            <div class="payment-name">Transfer Bank</div>
+                            <div class="payment-desc">BCA, Mandiri, BNI, BRI</div>
+                        </div>
+                    </div>
+                    <div class="bank-options" id="bankOptions">
+                        <div class="bank-option" onclick="selectBank('BCA')">
+                            <img class="bank-logo" src="./assets/images/Bank_Central_Asia.png" alt="BCA" height="29">
+                            <div class="bank-name">BCA</div>
+                        </div>
+                        <div class="bank-option" onclick="selectBank('Mandiri')">
+                            <img class="bank-logo" src="./assets/images/Bank_Mandiri_logo_2.png" alt="BCA" height="30">
+                            <div class="bank-name">Mandiri</div>
+                        </div>
+                        <div class="bank-option" onclick="selectBank('BNI')">
+                            <img class="bank-logo" src="./assets/images/image.png" alt="BCA" height="30">
+                            <div class="bank-name">BNI</div>
+                        </div>
+                        <div class="bank-option" onclick="selectBank('BRI')">
+                            <img class="bank-logo" src="./assets/images/image copy 2.png" alt="BCA" height="30">
+                            <div class="bank-name">BRI</div>
+                        </div>
+                    </div>
+
+                    <!-- E-Wallet -->
+                    <div class="payment-method" onclick="selectPaymentMethod('ewallet')">
+                        <input type="radio" name="payment" id="paymentEwallet">
+                        <div class="payment-icon">💳</div>
+                        <div class="payment-info">
+                            <div class="payment-name">E-Wallet</div>
+                            <div class="payment-desc">GoPay, OVO, Dana, ShopeePay</div>
+                        </div>
+                    </div>
+                    <div class="ewallet-options" id="ewalletOptions">
+                        <div class="ewallet-option" onclick="selectEwallet('GoPay')">
+                            <img class="bank-logo" src="./assets/images/image copy.png" alt="BCA" height="30">
+                            <div class="ewallet-name">GoPay</div>
+                        </div>
+                        <div class="ewallet-option" onclick="selectEwallet('OVO')">
+                            <img class="bank-logo" src="./assets/images/image copy 3.png" alt="BCA" height="30">
+                            <div class="ewallet-name">OVO</div>
+                        </div>
+                        <div class="ewallet-option" onclick="selectEwallet('Dana')">
+                            <img class="bank-logo" src="./assets/images/image copy 4.png" alt="BCA" height="30">
+                            <div class="ewallet-name">Dana</div>
+                        </div>
+                        <div class="ewallet-option" onclick="selectEwallet('ShopeePay')">
+                            <img class="bank-logo" src="./assets/images/image copy 5.png" alt="BCA" height="23">
+                            <div class="ewallet-name">ShopeePay</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="payment-details" id="paymentDetails">
+                <div class="section-title">Detail Pembayaran</div>
+                <p id="paymentInstructions"></p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="btn-group">
+                <button class="btn btn-cancel" onclick="cancelPayment()">Batal</button>
+                <button class="btn btn-pay" id="btnPay" onclick="processPayment()" disabled>Bayar Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h2>Pembayaran Berhasil!</h2>
+            <p>Transaksi Anda telah berhasil diproses. Paket internet akan segera aktif dalam beberapa menit.</p>
+            <button class="modal-btn" onclick="closeModal()">Kembali ke Beranda</button>
+        </div>
+    </div>
+
+    <script src="./script/script.js"></script>
+</body>
+
+</html>

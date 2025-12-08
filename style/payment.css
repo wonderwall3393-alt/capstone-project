@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, #EB3F3F 0%, #c93333 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.content {
+    padding: 30px;
+}
+
+.package-summary {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 2px solid #EB3F3F;
+}
+
+.package-summary h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.package-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.package-detail {
+    flex: 1;
+    min-width: 150px;
+}
+
+.package-detail label {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.package-detail .value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.total-price {
+    background: #EB3F3F;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.total-price label {
+    font-size: 12px;
+    opacity: 0.9;
+    color: white;
+}
+
+.total-price .value {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+}
+
+.payment-section {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.payment-methods {
+    display: grid;
+    gap: 12px;
+}
+
+.payment-method {
+    border: 2px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.payment-method:hover {
+    border-color: #EB3F3F;
+    background: #fff5f5;
+}
+
+.payment-method.selected {
+    border-color: #EB3F3F;
+    background: #fff5f5;
+    box-shadow: 0 4px 12px rgba(235, 63, 63, 0.15);
+}
+
+.payment-method input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #EB3F3F;
+}
+
+.payment-icon {
+    width: 50px;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.payment-info {
+    flex: 1;
+}
+
+.payment-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.payment-desc {
+    font-size: 13px;
+    color: #666;
+}
+
+.bank-options,
+.ewallet-options {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 15px;
+    margin-top: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.bank-option,
+.ewallet-option {
+    border: 2px solid #e5e5e5;
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.bank-option:hover,
+.ewallet-option:hover {
+    border-color: #EB3F3F;
+    transform: translateY(-2px);
+}
+
+.bank-option.selected,
+.ewallet-option.selected {
+    border-color: #EB3F3F;
+    background: #fff5f5;
+}
+
+.bank-logo, .ewallet-logo {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 40px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.bank-name,
+.ewallet-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: -10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e5e5e5;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #EB3F3F;
+}
+
+.payment-details {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    flex: 1;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-cancel {
+    background: white;
+    color: #EB3F3F;
+    border: 2px solid #EB3F3F;
+}
+
+.btn-cancel:hover {
+    background: #EB3F3F;
+    color: white;
+}
+
+.btn-pay {
+    background: #EB3F3F;
+    color: white;
+}
+
+.btn-pay:hover {
+    background: #d43535;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(235, 63, 63, 0.3);
+}
+
+.btn-pay:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #4CAF50;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 15px;
+    background: #EB3F3F;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal-btn:hover {
+    background: #d43535;
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 20px;
+    }
+
+    .package-info {
+        flex-direction: column;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .bank-options,
+    .ewallet-options {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
