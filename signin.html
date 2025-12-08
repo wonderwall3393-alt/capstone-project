@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/signin-style.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" type="image/x-icon">
+    <title>Sign Up - Sphinx Net</title>
+  </head>
+  <body>
+    <div class="signup-container">
+      <div class="image-section">
+        <div class="logo">
+          <img
+            src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+            alt="Sphinx Net Logo"
+          /><span>Sphinx <span class="logo-net">Net</span></span>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h1>Sign-up</h1>
+
+        <form id="signUpForm" onsubmit="handleSignup(event)">
+          <div class="input-group">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Full Name"
+              required
+              minlength="3"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email Address"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Phone Number"
+              required
+              autocomplete="tel"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              placeholder="Confirm Password"
+              required
+              minlength="8"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">I agree to the Terms & Conditions</label>
+          </div>
+
+          <div class="error-message" id="errorMessage" style="display: none;">
+            Registration failed. Please try again.
+          </div>
+
+          <button type="submit" class="btn-signup" id="signupBtn">Sign-up</button>
+        </form>
+
+        <p class="login-link">
+          Already have an account? <a href="./login.html">Sign-in</a>
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    async function handleSignup(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const password = document.getElementById('password').value;
+        const passwordConfirm = document.getElementById('passwordConfirm').value;
+        const signupBtn = document.getElementById('signupBtn');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Validate passwords match
+        if (password !== passwordConfirm) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Passwords do not match. Please try again.';
+            return;
+        }
+
+        // Show loading state
+        signupBtn.disabled = true;
+        signupBtn.textContent = 'Creating account...';
+        errorMessage.style.display = 'none';
+
+        try {
+            const response = await fetch('http://localhost:8000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password,
+                    phone: phone
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Store user data in localStorage
+                localStorage.setItem('currentUser', JSON.stringify(result.user));
+
+                // Redirect to main page
+                window.location.href = './beranda.html';
+            } else {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = result.error || 'Registration failed. Please try again.';
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Network error. Please try again.';
+
+            // Fallback to demo mode for testing
+            if (email === 'demo@sphinx.net' && password === passwordConfirm && password.length >= 8) {
+                const demoUser = {
+                    id: Date.now(),
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    package: null
+                };
+                localStorage.setItem('currentUser', JSON.stringify(demoUser));
+                window.location.href = './beranda.html';
+            }
+        } finally {
+            signupBtn.disabled = false;
+            signupBtn.textContent = 'Sign-up';
+        }
+    }
+
+    // Check if user is already logged in
+    window.addEventListener('DOMContentLoaded', () => {
+        const currentUser = localStorage.getItem('currentUser');
+        if (currentUser) {
+            window.location.href = './beranda.html';
+        }
+    });
+  </script>
+</html>

@@ -1,0 +1,102 @@
+Berikut adalah **Dokumen Spesifikasi Teknis (Technical Specification Document)** yang diringkas berdasarkan kebutuhan proyek Anda. Dokumen ini dirancang untuk pengembangan *native* (tanpa framework) menggunakan HTML, CSS, JavaScript, dan Python.
+
+-----
+
+## 📄 Dokumen Spesifikasi Teknis: Platform Rekomendasi ISP Berbasis AI
+
+### 1\. Ringkasan Proyek
+
+Situs web ini bertujuan untuk memberikan rekomendasi Penyedia Jasa Internet (ISP) yang dipersonalisasi berdasarkan kebutuhan pengguna melalui survei interaktif. Sistem menggunakan logika Python dan model AI sederhana untuk memproses jawaban survei. Selain itu, situs menyediakan manajemen profil pengguna untuk memantau paket yang aktif dan penggunaan data.
+
+### 2\. Tumpukan Teknologi (Tech Stack)
+
+Sesuai permintaan untuk tidak menggunakan framework (Vanilla/Native):
+
+  * **Frontend (Antarmuka):**
+      * **HTML5:** Struktur semantik halaman.
+      * **CSS3:** Styling, layout (Flexbox/Grid), dan animasi responsif tanpa library eksternal (Bootstrap/Tailwind).
+      * **JavaScript (ES6+):** Logika interaksi klien, manipulasi DOM, dan komunikasi asinkron (`Fetch API`) ke backend.
+  * **Backend (Logika & AI):**
+      * **Python:** Menangani logika survei, pemrosesan model AI/Logika bobot rekomendasi, dan penyajian data JSON.
+      * *Catatan Implementasi:* Menggunakan modul bawaan `http.server` atau `CGI` untuk menangani request HTTP tanpa framework web (seperti Flask/Django).
+  * **Database (Opsional/Simulasi):**
+      * JSON File atau SQLite (untuk penyimpanan data pengguna dan paket secara sederhana).
+
+-----
+
+### 3\. Fitur Utama (Core Features)
+
+#### A. Halaman Arahan Dinamis (Dynamic Landing Page)
+
+  * **Mode Tamu (Guest):** Menampilkan proposisi nilai utama dan tombol ajakan bertindak (CTA) untuk "Masuk" atau "Mulai".
+  * **Mode Masuk (Logged-in):**
+      * Tampilan disesuaikan untuk pengguna terdaftar.
+      * **Header Header:** Menampilkan ikon pengguna (Avatar) di pojok kanan atas.
+      * **Status Paket:** Ringkasan singkat paket aktif (jika ada).
+
+#### B. Sistem Survei & Rekomendasi AI
+
+  * **Input Survei:** Formulir interaktif (HTML/JS) yang menanyakan:
+	(survey sudah tersedia tinggal di rapihkan)
+	tambahkan list di survey pertanyaan "handphone apa yang anda pakai?" dengan jawaban yg sesuai dengan model
+  * **Pemrosesan Python (AI Model):**
+      * Data dikirim dari JS ke script Python via HTTP Request (POST).
+      * Python memasukan input survey yang cocok ke model 'model_telco_recommendation.pkl' lalu disesuaikan dengan skor kecocokan
+      * Python menghitung bobot skor kecocokan (Matching Score) antara kebutuhan user dan database ISPs 
+      * Output: Daftar rekomendasi ISP terbaik dalam format JSON.
+
+#### C. Profil Pengguna & Visualisasi Data
+
+  * **Detail Pengguna:** Menampilkan Nama, Email, dan ID Pelanggan.
+  * **Manajemen Paket:** Menampilkan detail paket internet yang sedang dibeli/dimiliki.
+  * **Visualisasi Penggunaan Data (Pie Chart):**
+      * Diagram lingkaran yang menunjukkan sisa kuota atau penggunaan GB.
+      * **Teknis Tanpa Framework:** Menggunakan **CSS `conic-gradient`** atau **HTML5 Canvas** untuk menggambar diagram lingkaran secara native tanpa library chart (seperti Chart.js).
+
+-----
+
+### 4\. Alur Pengguna (User Flow)
+
+1.  **Landing Page (Guest):**
+      * User mengakses web -\> Klik "Login".
+2.  **Authentication:**
+      * User memasukkan kredensial -\> Validasi berhasil.
+3.  **Landing Page (User):**
+      * Redirect kembali ke halaman depan.
+      * Tombol "Login" berubah menjadi **Ikon User**.
+      * User melihat opsi untuk mengambil "Survei Rekomendasi".
+4.  **Survei & Hasil:**
+      * User mengisi survei -\> Submit.
+      * Sistem Python memproses -\> Menampilkan rekomendasi ISP.
+5.  **Halaman Profil:**
+      * User mengklik **Ikon User** di header.
+      * Sistem menampilkan:
+          * Informasi Diri.
+          * Paket Aktif.
+          * Diagram Lingkaran (Penggunaan Data).
+
+-----
+
+### 5\. Struktur Data & Logika (Python Logic)
+
+Sistem Python akan menerima input survei sebagai vektor fitur
+bisa menggunakan logic 'Logic.txt' harus di sesuaikan dengan model
+Dan model akan memberikan skor kecocokan ($S$) terhadap daftar ISP ($Y$):
+$$S(Y_i) = f(X, Y_i)$$
+
+Dimana $f$ adalah fungsi logika pembobotan atau model Machine Learning sederhana menggunakan file model 'model_telco_recommendation.pkl'
+
+### 6\. Rencana Implementasi Frontend (Cuplikan)
+
+Untuk memenuhi syarat visualisasi tanpa framework pada profil:
+
+**HTML/CSS Pie Chart (Native):**
+
+```html
+<div class="pie-chart" style="background: conic-gradient(
+    #4CAF50 0% 70%,  /* 70% Terpakai */
+    #ddd 70% 100%    /* 30% Sisa */
+);"></div>
+```
+
+-----
