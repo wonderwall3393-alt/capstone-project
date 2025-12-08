@@ -1,92 +1,125 @@
 <!DOCTYPE html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/signup.css" />
+    <title>Sign Up - Sphinx Net</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="shortcut icon" href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" type="image/x-icon">
-  <link rel="stylesheet" href="./style/signup.css">
-  <title>Sign Up - Sphinx Net</title>
-</head>
-
-<body>
-  <div class="container">
-    <!-- Left Section - Image (sama seperti login page) -->
-    <div class="left-section">
-      <div class="logo-overlay">
-        <img src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" alt="Sphinx Net Logo" class="logo-icon">
-        <div class="logo-text">Sphinx <span>Net</span></div>
+  <body>
+    <div class="container">
+      <!-- Left Section - Image (sama seperti login page) -->
+      <div class="left-section">
+        <div class="logo-overlay">
+          <img
+            src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+            alt="Sphinx Net Logo"
+            class="logo-icon"
+          />
+          <div class="logo-text">Sphinx <span>Net</span></div>
+        </div>
+        <img src="./assets/images/signup.jpeg" alt="Professional businessman" />
       </div>
-      <img src="./assets/images/signup.jpeg" alt="Professional businessman">
+
+      <!-- Right Section - Form -->
+      <div class="right-section">
+        <div class="logo">
+          <img
+            src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+            alt="Sphinx Net Logo"
+            class="logo-icon"
+          />
+          <div class="logo-text">Sphinx <span>Net</span></div>
+        </div>
+
+        <h1>Hallo!</h1>
+        <div class="subtitle">Buat Akun mu!</div>
+
+        <form id="signUpForm">
+          <div class="input-group">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Username"
+              required
+              minlength="6"
+              autocomplete="username"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email Address"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Phone Number"
+              required
+              autocomplete="tel"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              placeholder="Confirm Password"
+              required
+              minlength="8"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">Saya setuju dengan Syarat & Ketentuan</label>
+          </div>
+
+          <button type="submit" class="btn-signup">Daftar</button>
+        </form>
+
+        <p class="login-link">
+          Sudah punya akun? <a href="./login.html">Masuk</a>
+        </p>
+      </div>
     </div>
 
-    <!-- Right Section - Form -->
-    <div class="right-section">
-      <div class="logo">
-        <img src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" alt="Sphinx Net Logo" class="logo-icon">
-        <div class="logo-text">Sphinx <span>Net</span></div>
-      </div>
-
-      <h1>Hallo!</h1>
-      <div class="subtitle">Buat Akun mu!</div>
-
-      <form id="signUpForm">
-        <div class="input-group">
-          <input type="text" id="username" name="username" placeholder="Username" required minlength="6"
-            autocomplete="username">
-        </div>
-
-        <div class="input-group">
-          <input type="email" id="email" name="email" placeholder="Email Address" required autocomplete="email">
-        </div>
-
-        <div class="input-group">
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number" required autocomplete="tel">
-        </div>
-
-        <div class="input-group">
-          <input type="password" id="password" name="password" placeholder="Password" required minlength="8"
-            autocomplete="new-password">
-        </div>
-
-        <div class="input-group">
-          <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm Password" required
-            minlength="8" autocomplete="off">
-        </div>
-
-        <div class="checkbox-group">
-          <input type="checkbox" id="terms" name="terms" required>
-          <label for="terms">Saya setuju dengan Syarat & Ketentuan</label>
-        </div>
-
-        <button type="submit" class="btn-signup">Daftar</button>
-      </form>
-
-      <p class="login-link">
-        Sudah punya akun? <a href="./login.html">Masuk</a>
-      </p>
-    </div>
-  </div>
-
-  <script>
-    document.getElementById('signUpForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const password = document.getElementById('password').value;
-      const passwordConfirm = document.getElementById('passwordConfirm').value;
-
-      if (password !== passwordConfirm) {
-        alert('Password tidak cocok!');
-        return;
-      }
-
-      // Add your sign up logic here
-      console.log('Form submitted successfully');
-    });
-  </script>
-</body>
-
+    <script src="./script/signup.js"></script>
+  </body>
 </html>
