@@ -496,14 +496,13 @@ function displayRecommendations(recommendations, metadata = null) {
     const headerDiv = document.createElement('div');
     headerDiv.className = 'recommendation-header';
     headerDiv.innerHTML = `
-        <h2>🎯 Rekomendasi Untuk Anda</h2>
+        <h2>Rekomendasi Untuk Anda</h2>
         <div class="recommendation-stats">
             <div class="stat-item ai-stat">
                 <i class="fa-solid fa-brain"></i>
                 <span>AI Model: ${aiCount} paket</span>
             </div>
             <div class="stat-item survey-stat">
-                <i class="fa-solid fa-user-poll"></i>
                 <span>Survey Analysis: ${surveyCount} paket</span>
             </div>
         </div>
@@ -513,7 +512,7 @@ function displayRecommendations(recommendations, metadata = null) {
 
     // Create recommendation cards container
     const cardsContainer = document.createElement('div');
-    cardsContainer.className = 'recommendation-cards';
+    cardsContainer.className = 'recommendation-cards-contrainer';
 
     // Add all recommendation cards with clear labels
     recommendations.forEach(pkg => {
@@ -533,9 +532,10 @@ function createHybridRecommendationCard(pkg, isAI, matchPercentage) {
     const sourceClass = isAI ? 'ai-card' : 'survey-card';
     const labelClass = isAI ? 'ai-label' : 'survey-label';
 
-    return `<div class="package-card ${sourceClass}">
+    return `
+    <div class="package-card ${sourceClass}">
             <div class="recommendation-label ${labelClass}">
-                <i class="fa-solid ${sourceIcon}"></i>
+                
                 ${sourceText}
             </div>
             <div class="match-score">
@@ -546,15 +546,15 @@ function createHybridRecommendationCard(pkg, isAI, matchPercentage) {
                 <i class="fa-solid fa-info-circle"></i>
                 ${pkg.source}
             </div>` : ''}
-            <div class="package-name">${pkg.name}</div>
-            <div class="package-details">${pkg.kuota}</div>
-            <div class="package-category">${pkg.category.charAt(0).toUpperCase() + pkg.category.slice(1)}</div>
-            <div class="package-price">Rp ${pkg.harga.toLocaleString('id-ID')}</div>
-            <button class="btn-choose ${isAI ? 'ai-choose' : 'survey-choose'}">
-                <i class="fa-solid fa-check"></i>
-                Pilih Paket
-            </button>
-        </div>`;
+        <div class="package-name">${pkg.name}</div>
+        <div class="package-details">${pkg.kuota}</div>
+        <div class="package-category">${pkg.category.charAt(0).toUpperCase() + pkg.category.slice(1)}</div>
+        <div class="package-price">Rp ${pkg.harga.toLocaleString('id-ID')}</div>
+        <button class="btn-choose ${isAI ? 'ai-choose' : 'survey-choose'}">
+            <i class="fa-solid fa-check"></i>
+            Pilih Paket
+        </button>
+    </div>`;
 }
 
 function showRecommendations() {
@@ -581,14 +581,14 @@ async function sendSurveyToPython(surveyData) {
         if (response.ok) {
             const result = await response.json();
             if (result.success) {
-                console.log('📊 Hybrid recommendations received:', result.metadata);
+                console.log('Hybrid recommendations received:', result.metadata);
                 return result;
             }
         } else {
             throw new Error('Server error');
         }
     } catch (error) {
-        console.log('🤖 AI Model server not available, using frontend calculation');
+        console.log('AI Model server not available, using frontend calculation');
         return null; // Fallback to frontend calculation
     }
 

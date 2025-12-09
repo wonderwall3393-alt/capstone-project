@@ -1,0 +1,329 @@
+{
+    "quota": [
+        {
+            "sectionTitle": "Paket Internet Stabil (Stable Series)",
+            "packages": [
+                {
+                    "name": "Sphinx Stable",
+                    "quota": "20 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp40.000"
+                },
+                {
+                    "name": "Sphinx Stable",
+                    "quota": "50 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp75.000"
+                },
+                {
+                    "name": "Sphinx Stable",
+                    "quota": "100 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp120.000"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket Hemat (Budget Series)",
+            "packages": [
+                {
+                    "name": "Sphinx Hemat",
+                    "quota": "5 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp25.000"
+                },
+                {
+                    "name": "Sphinx Hemat",
+                    "quota": "10 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp35.000"
+                },
+                {
+                    "name": "Sphinx Hemat",
+                    "quota": "20 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp45.000"
+                },
+                {
+                    "name": "Sphinx Hemat",
+                    "quota": "30 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp55.000"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket Unlimited",
+            "packages": [
+                {
+                    "name": "Sphinx Unlimited",
+                    "quota": "Unlimited",
+                    "validity": "30 Hari",
+                    "price": "Rp250.000"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket Social Media & Streaming",
+            "packages": [
+                {
+                    "name": "Sphinx Social",
+                    "quota": "10 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp20.000"
+                },
+                {
+                    "name": "Sphinx Stream",
+                    "quota": "50 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp70.000"
+                },
+                {
+                    "name": "Sphinx Stream",
+                    "quota": "100 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp120.000"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket Gaming",
+            "packages": [
+                {
+                    "name": "Sphinx Gamer Pro",
+                    "quota": "40 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp65.000"
+                },
+                {
+                    "name": "Sphinx Gamer Max",
+                    "quota": "80 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp110.000"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket Work & IoT",
+            "packages": [
+                {
+                    "name": "Sphinx Work Connect",
+                    "quota": "30 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp55.000"
+                },
+                {
+                    "name": "Sphinx IoT Home",
+                    "quota": "20 GB",
+                    "validity": "30 Hari",
+                    "price": "Rp30.000"
+                },
+                {
+                    "name": "Sphinx IoT Fiber",
+                    "quota": "30 Mbps",
+                    "validity": "30 Hari",
+                    "price": "Rp150.000"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket Luar Negeri (Roaming)",
+            "packages": [
+                {
+                    "name": "Sphinx Global Lite",
+                    "quota": "1 GB",
+                    "validity": "Roaming",
+                    "price": "Rp75.000"
+                },
+                {
+                    "name": "Sphinx Global Pass",
+                    "quota": "3 GB",
+                    "validity": "Roaming",
+                    "price": "Rp150.000"
+                },
+                {
+                    "name": "Sphinx Roam Max",
+                    "quota": "10 GB",
+                    "validity": "Roaming",
+                    "price": "Rp350.000"
+                }
+            ]
+        }
+    ],
+    "simCredit": [
+        {
+            "sectionTitle": "Paket Pulsa Reguler",
+            "packages": [
+                {
+                    "quota": "Rp10.000",
+                    "validity": "30 Hari",
+                    "price": "Rp11.000"
+                },
+                {
+                    "quota": "Rp25.000",
+                    "validity": "30 Hari",
+                    "price": "Rp26.500"
+                },
+                {
+                    "quota": "Rp50.000",
+                    "validity": "30 Hari",
+                    "price": "Rp51.500"
+                },
+                {
+                    "quota": "Rp100.000",
+                    "validity": "30 Hari",
+                    "price": "Rp101.500"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket Pulsa Promo",
+            "packages": [
+                {
+                    "quota": "Rp50.000",
+                    "validity": "60 Hari",
+                    "oldPrice": "Rp55.000",
+                    "price": "Rp50.000"
+                },
+                {
+                    "quota": "Rp100.000",
+                    "validity": "60 Hari",
+                    "oldPrice": "Rp110.000",
+                    "price": "Rp99.000"
+                },
+                {
+                    "quota": "Rp150.000",
+                    "validity": "90 Hari",
+                    "oldPrice": "Rp165.000",
+                    "price": "Rp149.000"
+                },
+                {
+                    "quota": "Rp200.000",
+                    "validity": "90 Hari",
+                    "oldPrice": "Rp220.000",
+                    "price": "Rp195.000"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket Telepon",
+            "packages": [
+                {
+                    "quota": "100 Menit",
+                    "validity": "30 Hari",
+                    "price": "Rp20.000"
+                },
+                {
+                    "quota": "250 Menit",
+                    "validity": "30 Hari",
+                    "price": "Rp45.000"
+                },
+                {
+                    "quota": "500 Menit",
+                    "validity": "30 Hari",
+                    "price": "Rp80.000"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket SMS",
+            "packages": [
+                {
+                    "quota": "200 SMS",
+                    "validity": "30 Hari",
+                    "price": "Rp15.000"
+                },
+                {
+                    "quota": "500 SMS",
+                    "validity": "30 Hari",
+                    "price": "Rp30.000"
+                },
+                {
+                    "quota": "1000 SMS",
+                    "validity": "30 Hari",
+                    "price": "Rp50.000"
+                }
+            ]
+        }
+    ],
+    "wifi": [
+        {
+            "sectionTitle": "Paket WiFi Rumah",
+            "packages": [
+                {
+                    "quota": "10 Mbps",
+                    "validity": "30 Hari",
+                    "price": "Rp200.000",
+                    "extra": "Unlimited"
+                },
+                {
+                    "quota": "20 Mbps",
+                    "validity": "30 Hari",
+                    "price": "Rp300.000",
+                    "extra": "Unlimited"
+                },
+                {
+                    "quota": "50 Mbps",
+                    "validity": "30 Hari",
+                    "price": "Rp450.000",
+                    "extra": "Unlimited"
+                },
+                {
+                    "quota": "100 Mbps",
+                    "validity": "30 Hari",
+                    "price": "Rp650.000",
+                    "extra": "Unlimited"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket WiFi Bisnis",
+            "packages": [
+                {
+                    "quota": "50 Mbps",
+                    "validity": "30 Hari",
+                    "oldPrice": "Rp550.000",
+                    "price": "Rp500.000",
+                    "extra": "Dedicated"
+                },
+                {
+                    "quota": "100 Mbps",
+                    "validity": "30 Hari",
+                    "oldPrice": "Rp850.000",
+                    "price": "Rp800.000",
+                    "extra": "Dedicated"
+                },
+                {
+                    "quota": "200 Mbps",
+                    "validity": "30 Hari",
+                    "oldPrice": "Rp1.500.000",
+                    "price": "Rp1.400.000",
+                    "extra": "Dedicated"
+                }
+            ]
+        },
+        {
+            "sectionTitle": "Paket WiFi Premium",
+            "packages": [
+                {
+                    "quota": "300 Mbps",
+                    "validity": "30 Hari",
+                    "price": "Rp2.000.000",
+                    "extra": "Fiber Optic"
+                },
+                {
+                    "quota": "500 Mbps",
+                    "validity": "30 Hari",
+                    "price": "Rp3.000.000",
+                    "extra": "Fiber Optic"
+                },
+                {
+                    "quota": "1 Gbps",
+                    "validity": "30 Hari",
+                    "price": "Rp5.000.000",
+                    "extra": "Fiber Optic"
+                }
+            ]
+        }
+    ]
+}

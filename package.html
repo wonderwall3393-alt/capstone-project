@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +7,8 @@
     <title>Paket Internet - Sphinx Net</title>
     <link rel="shortcut icon" href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" type="image/x-icon">
     <link rel="stylesheet" href="./style/package.css">
-    <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/responsive.css">
 </head>
-
 <body>
     <!-- Header -->
     <header>
@@ -52,412 +49,20 @@
 
         <!-- Navigation Tabs -->
         <div class="package-navigation">
+            <button class="nav-tab active" onclick="showPackage('quota')">Paket Kuota</button>
             <button class="nav-tab" onclick="showPackage('sim-credit')">Paket Pulsa</button>
             <button class="nav-tab" onclick="showPackage('wifi')">Paket Wifi</button>
-            <button class="nav-tab active" onclick="showPackage('quota')">Paket Kuota</button>
         </div>
 
-        <!-- SIM Credit Package Content -->
-        <div id="sim-credit" class="package-content">
-            <!-- Paket Pulsa Reguler -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Pulsa Reguler</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="quota">Rp10.000</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp11.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">Rp25.000</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp26.500</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">Rp50.000</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp51.500</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">Rp100.000</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp101.500</div>
-                    </div>
-                </div>
-            </div>
+        <!-- Paket Kuota Content (akan di-render oleh JavaScript) -->
+        <div id="quota" class="package-content active"></div>
 
-            <!-- Paket Pulsa Promo -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Pulsa Promo</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="quota">Rp50.000</div>
-                        <div class="validity">60 Hari</div>
-                        <div class="old-price">Rp55.000</div>
-                        <div class="price">Rp50.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">Rp100.000</div>
-                        <div class="validity">60 Hari</div>
-                        <div class="old-price">Rp110.000</div>
-                        <div class="price">Rp99.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">Rp150.000</div>
-                        <div class="validity">90 Hari</div>
-                        <div class="old-price">Rp165.000</div>
-                        <div class="price">Rp149.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">Rp200.000</div>
-                        <div class="validity">90 Hari</div>
-                        <div class="old-price">Rp220.000</div>
-                        <div class="price">Rp195.000</div>
-                    </div>
-                </div>
-            </div>
+        <!-- SIM Credit Package Content (akan di-render oleh JavaScript) -->
+        <div id="sim-credit" class="package-content"></div>
 
-            <!-- Paket Telepon -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Telepon</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="quota">100 Menit</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp20.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">250 Menit</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp45.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">500 Menit</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp80.000</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket SMS -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket SMS</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="quota">200 SMS</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp15.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">500 SMS</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp30.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">1000 SMS</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp50.000</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- WiFi Package Content -->
-        <div id="wifi" class="package-content">
-            <!-- Paket WiFi Rumah -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket WiFi Rumah</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="quota">10 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp200.000</div>
-                        <div class="price-per-gb">Unlimited</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">20 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp300.000</div>
-                        <div class="price-per-gb">Unlimited</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">50 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp450.000</div>
-                        <div class="price-per-gb">Unlimited</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">100 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp650.000</div>
-                        <div class="price-per-gb">Unlimited</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket WiFi Bisnis -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket WiFi Bisnis</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="quota">50 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="old-price">Rp550.000</div>
-                        <div class="price">Rp500.000</div>
-                        <div class="price-per-gb">Dedicated</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">100 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="old-price">Rp850.000</div>
-                        <div class="price">Rp800.000</div>
-                        <div class="price-per-gb">Dedicated</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">200 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="old-price">Rp1.500.000</div>
-                        <div class="price">Rp1.400.000</div>
-                        <div class="price-per-gb">Dedicated</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket WiFi Premium -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket WiFi Premium</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="quota">300 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp2.000.000</div>
-                        <div class="price-per-gb">Fiber Optic</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">500 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp3.000.000</div>
-                        <div class="price-per-gb">Fiber Optic</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="quota">1 Gbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp5.000.000</div>
-                        <div class="price-per-gb">Fiber Optic</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Paket Kuota Content -->
-        <div id="quota" class="package-content active">
-            <!-- Paket Internet Stabil -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Internet Stabil (Stable Series)</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Stable</div>
-                        <div class="quota">20 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp40.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Stable</div>
-                        <div class="quota">50 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp75.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Stable</div>
-                        <div class="quota">100 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp120.000</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket Hemat -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Hemat (Budget Series)</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Hemat</div>
-                        <div class="quota">5 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp25.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Hemat</div>
-                        <div class="quota">10 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp35.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Hemat</div>
-                        <div class="quota">20 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp45.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Hemat</div>
-                        <div class="quota">30 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp55.000</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket Unlimited -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Unlimited</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Unlimited</div>
-                        <div class="quota">Unlimited</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp250.000</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket Berdasarkan Penggunaan - Social & Streaming -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Social Media & Streaming</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Social</div>
-                        <div class="quota">10 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp20.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Stream</div>
-                        <div class="quota">50 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp70.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Stream</div>
-                        <div class="quota">100 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp120.000</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket Gaming -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Gaming</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Gamer Pro</div>
-                        <div class="quota">40 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp65.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Gamer Max</div>
-                        <div class="quota">80 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp110.000</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket Work & IoT -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Work & IoT</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Work Connect</div>
-                        <div class="quota">30 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp55.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx IoT Home</div>
-                        <div class="quota">20 GB</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp30.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx IoT Fiber</div>
-                        <div class="quota">30 Mbps</div>
-                        <div class="validity">30 Hari</div>
-                        <div class="price">Rp150.000</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paket Roaming -->
-            <div class="promo-section">
-                <div class="section-header">
-                    <div class="section-title">Paket Luar Negeri (Roaming)</div>
-                    <div class="view-all">Lihat Semua</div>
-                </div>
-                <div class="cards-container">
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Global Lite</div>
-                        <div class="quota">1 GB</div>
-                        <div class="validity">Roaming</div>
-                        <div class="price">Rp75.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Global Pass</div>
-                        <div class="quota">3 GB</div>
-                        <div class="validity">Roaming</div>
-                        <div class="price">Rp150.000</div>
-                    </div>
-                    <div class="package-card">
-                        <div class="package-name">Sphinx Roam Max</div>
-                        <div class="quota">10 GB</div>
-                        <div class="validity">Roaming</div>
-                        <div class="price">Rp350.000</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- WiFi Package Content (akan di-render oleh JavaScript) -->
+        <div id="wifi" class="package-content"></div>
     </main>
-
 
     <!-- Footer -->
     <footer>
@@ -497,18 +102,15 @@
                 <div class="lisence">
                     <p>Jl. Raya Siman, Dusun I, Demangan,<br> Kec. Siman, Kabupaten Ponorogo, <br>Jawa Timur 63471</p>
                     <p>© 2025 Sphinx Net. All Rights Reserved.</p>
-                    <div class="up-button">
-                        <a href="#pageTitle"><i class="fa-solid fa-chevron-up"></i></a>
-                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
+    <script src="./script/packageData.js"></script>
     <script src="./script/script.js"></script>
     <script src="./script/auth.js"></script>
     <script src="./script/animation.js"></script>
 </body>
-
 </html>

@@ -5,11 +5,11 @@
 
 body,
 html {
-    margin: 0;
-    padding: 0;
     background-color: #ffff;
     min-height: 100vh;
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 /* === navbar === */
@@ -183,7 +183,7 @@ main .hero-section .lm-button:hover {
 
 main .package-section {
     min-height: 91vh;
-    background-color: #EDEDED;
+    background-color: #ffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -221,7 +221,7 @@ main .package-section .choice-package {
 }
 
 main .package-section .choice-package .package1 {
-    background-color: #ffff;
+    background-color: #eeeeee;
     padding: 50px 4.5rem;
     border-radius: 11px;
     text-align: center;
@@ -245,7 +245,7 @@ main .package-section .choice-package .package1 i {
 }
 
 main .package-section .choice-package .package2 {
-    background-color: #ffff;
+    background-color: #eeeeee;
     padding: 50px 4.9rem;
     border-radius: 11px;
     text-align: center;
@@ -269,7 +269,7 @@ main .package-section .choice-package .package2 i {
 }
 
 main .package-section .choice-package .package3 {
-    background-color: #ffff;
+    background-color: #eeeeee;
     padding: 50px 4.9rem;
     border-radius: 11px;
     text-align: center;
@@ -473,7 +473,7 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 
 /* Recommendation Section Styles */
 .recommendation-section {
-    min-height: 100vh;
+    min-height: 20vh;
     background-color: #f8f8f8;
     padding: 80px 20px;
     display: flex;
@@ -483,14 +483,6 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 
 .recommendation-header {
     text-align: center;
-    margin-bottom: 40px;
-}
-
-.recommendation-header h2 {
-    font-size: 48px;
-    color: #EB3F3F;
-    margin-bottom: 15px;
-    font-weight: 600;
 }
 
 .header-line {
@@ -518,6 +510,10 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 /* Survey Modal */
+#surveyForm {
+    font-family: inter;
+}
+
 .survey-modal {
     display: none;
     position: fixed;
@@ -669,18 +665,11 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
     display: none;
     width: 100%;
     max-width: 1200px;
-    margin-top: 40px;
 }
 
 .recommendations-container.active {
-    display: block;
-}
-
-.recommendation-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 /* Hybrid Recommendation System Styles */
@@ -709,7 +698,7 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .metadata-title::before {
-    content: '🎯';
+    content: "";
     font-size: 24px;
 }
 
@@ -731,18 +720,6 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
     font-family: inter;
 }
 
-.ml-stat {
-    background-color: #e8f5e8;
-    color: #2e7d32;
-    border: 1px solid #4caf50;
-}
-
-.survey-stat {
-    background-color: #e3f2fd;
-    color: #1976d2;
-    border: 1px solid #42a5f5;
-}
-
 .metadata-info {
     color: #666;
     font-size: 14px;
@@ -753,7 +730,6 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 /* Hybrid Recommendation System Styles */
 .recommendation-header {
     text-align: center;
-    margin-bottom: 40px;
     padding: 20px;
 }
 
@@ -762,6 +738,7 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
     color: #333;
     margin-bottom: 15px;
     font-family: inter;
+    margin-top: 0;
 }
 
 .recommendation-stats {
@@ -790,9 +767,9 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .survey-stat {
-    background-color: #e3f2fd;
-    color: #1976d2;
-    border: 1px solid #42a5f5;
+    background-color: #fdefef;
+    color: #EB3F3F;
+    border: 1px solid #cf4a4a;
 }
 
 .recommendation-subtitle {
@@ -803,23 +780,18 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .recommendation-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
+    display: block;
+    gap: 20px;
+}
+
+.recommendation-cards-contrainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 /* Enhanced Package Cards with Labels */
-.package-card {
-    position: relative;
-    background-color: white;
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    overflow: hidden;
-}
 
 .ai-card {
     border-color: #4caf50;
@@ -831,7 +803,7 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .survey-card {
-    border-color: #1976d2;
+    border-color: #EB3F3F;
 }
 
 .survey-card:hover {
@@ -842,15 +814,15 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 /* Recommendation Labels */
 .recommendation-label {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 6px 12px;
+    top: 12px;
+    right: 12px;
+    padding: 4px 10px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     font-family: inter;
     z-index: 10;
 }
@@ -861,7 +833,7 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .survey-label {
-    background: linear-gradient(135deg, #1976d2, #1565c0);
+    background-color: #EB3F3F;
     color: white;
 }
 
@@ -869,11 +841,11 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 .match-score {
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 16px;
+    gap: 4px;
+    font-size: 13px;
     font-weight: 700;
-    margin-bottom: 15px;
-    padding: 8px 12px;
+    margin-bottom: 12px;
+    padding: 6px 10px;
     border-radius: 8px;
     font-family: inter;
 }
@@ -885,72 +857,71 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .survey-card .match-score {
-    background-color: #e3f2fd;
-    color: #1976d2;
-    border: 1px solid #42a5f5;
+    background-color: #fdefef;
+    color: #EB3F3F;
+    border: 1px solid #cf4a4a;
 }
 
 .recommendation-source {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     color: #666;
-    font-size: 12px;
-    margin-bottom: 10px;
+    font-size: 11px;
+    margin-bottom: 8px;
     font-family: inter;
 }
 
 /* Package Details */
 .package-name {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     color: #333;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-family: inter;
+    line-height: 1.3;
 }
 
 .package-details {
     color: #666;
-    margin-bottom: 5px;
-    font-size: 16px;
+    margin-bottom: 4px;
+    font-size: 13px;
     font-family: inter;
+    line-height: 1.4;
 }
 
 .package-category {
     display: inline-block;
-    background-color: #f5f5f5;
-    color: #666;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     font-family: inter;
     text-transform: uppercase;
 }
 
 .package-price {
-    font-size: 24px;
+    font-size: 18px;
     color: #333;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+
     font-family: inter;
 }
 
 /* Buttons */
 .btn-choose {
     width: 100%;
-    padding: 12px 20px;
+    padding: 10px 16px;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     font-family: inter;
 }
 
@@ -965,12 +936,12 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .survey-choose {
-    background-color: #1976d2;
+    background-color: #EB3F3F;
     color: white;
 }
 
 .survey-choose:hover {
-    background-color: #1e88e5;
+    background-color: #f15050;
     transform: scale(1.02);
 }
 
@@ -979,11 +950,14 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
     position: relative;
     background-color: white;
     border-radius: 16px;
-    padding: 25px;
+    padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border: 2px solid transparent;
     overflow: hidden;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
 }
 
 .ml-card {
@@ -996,7 +970,7 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .survey-card {
-    border-color: #1976d2;
+    border-color: #EB3F3F;
 }
 
 .survey-card:hover {
@@ -1036,7 +1010,7 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 }
 
 .survey-indicator {
-    background: linear-gradient(135deg, #1976d2, #1565c0);
+    background-color: #EB3F3F;
     color: white;
 }
 
@@ -1049,10 +1023,11 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 
 /* Match Scores */
 .match-score {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 700;
     margin-bottom: 12px;
-    padding: 8px 12px;
+    /* padding: 6px 10px; */
+    width: 100px;
     border-radius: 8px;
     display: inline-block;
     font-family: inter;
@@ -1085,43 +1060,6 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
 
 .ml-confidence i {
     margin-right: 5px;
-}
-
-/* Package Details */
-.package-name {
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 8px;
-    font-family: inter;
-}
-
-.package-details {
-    color: #666;
-    margin-bottom: 5px;
-    font-size: 16px;
-    font-family: inter;
-}
-
-.package-category {
-    display: inline-block;
-    background-color: #f5f5f5;
-    color: #666;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    font-family: inter;
-    text-transform: uppercase;
-}
-
-.package-price {
-    font-size: 24px;
-    color: #333;
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-family: inter;
 }
 
 /* === User Profile Styles === */
