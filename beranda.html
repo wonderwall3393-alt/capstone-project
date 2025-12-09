@@ -66,7 +66,39 @@
                 </div>
             </div>
         </section>
+    <!-- Recommendation Section -->
+    <section class="recommendation-section" id="recommendationSection">
+        <div class="recommendation-header">
+            <h2>For You</h2>
+            <div class="header-line"></div>
+            <button class="survey-button" id="surveyBtn">Survey Pengguna</button>
+        </div>
 
+        <!-- Recommendations Container -->
+        <div class="recommendations-container" id="recommendationsContainer">
+            <div class="recommendation-cards" id="recommendationCards">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+            <div class="retake-survey">
+                <button class="btn-retake" id="retakeBtn">Retake Survey</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Survey Modal -->
+    <div class="survey-modal" id="surveyModal">
+        <div class="survey-content">
+            <div id="surveyQuestions">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            <div class="survey-buttons">
+                <button class="btn-prev" id="btnPrev" disabled>Previous</button>
+                <button class="btn-next" id="btnNext">Next</button>
+                <button class="btn-submit" id="btnSubmit" style="display: none;">Submit</button>
+            </div>
+        </div>
+    </div>
+    <script src="./script/home.js"></script>
         <section class="quotes-section">
             <div class="quotes-content-container">
                 <div class="img-container">

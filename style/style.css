@@ -470,3 +470,656 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
     color: black;
     font-size: 20px;
 }
+
+/* Recommendation Section Styles */
+.recommendation-section {
+    min-height: 100vh;
+    background-color: #f8f8f8;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recommendation-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.recommendation-header h2 {
+    font-size: 48px;
+    color: #EB3F3F;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.header-line {
+    width: 100px;
+    height: 3px;
+    background-color: #EB3F3F;
+    margin: 0 auto 30px;
+}
+
+.survey-button {
+    padding: 12px 40px;
+    background-color: #EB3F3F;
+    color: white;
+    border: 2px solid #EB3F3F;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.survey-button:hover {
+    background-color: white;
+    color: #EB3F3F;
+}
+
+/* Survey Modal */
+.survey-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.survey-modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.survey-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideUp 0.4s ease;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+    from { 
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.survey-question {
+    display: none;
+}
+
+.survey-question.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.question-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.question-number {
+    color: #EB3F3F;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.option-label:hover {
+    border-color: #EB3F3F;
+    background-color: #fff5f5;
+}
+
+.option-label input[type="radio"],
+.option-label input[type="checkbox"] {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #EB3F3F;
+}
+
+.option-label.selected {
+    border-color: #EB3F3F;
+    background-color: #fff5f5;
+}
+
+.survey-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-prev, .btn-next, .btn-submit {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-prev {
+    background-color: #ddd;
+    color: #333;
+}
+
+.btn-prev:hover {
+    background-color: #ccc;
+}
+
+.btn-next, .btn-submit {
+    background-color: #EB3F3F;
+    color: white;
+    flex: 1;
+}
+
+.btn-next:hover, .btn-submit:hover {
+    background-color: #d32f2f;
+}
+
+.btn-prev:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Recommendations Display */
+.recommendations-container {
+    display: none;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 40px;
+}
+
+.recommendations-container.active {
+    display: block;
+}
+
+.recommendation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Hybrid Recommendation System Styles */
+.recommendation-metadata {
+    grid-column: 1 / -1;
+    margin-bottom: 30px;
+}
+
+.metadata-section {
+    background: linear-gradient(135deg, #f8f9ff 0%, #fff5f5 100%);
+    border-radius: 16px;
+    padding: 25px;
+    border-left: 4px solid #EB3F3F;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.metadata-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    font-family: inter;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.metadata-title::before {
+    content: '🎯';
+    font-size: 24px;
+}
+
+.metadata-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inter;
+}
+
+.ml-stat {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+}
+
+.survey-stat {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #42a5f5;
+}
+
+.metadata-info {
+    color: #666;
+    font-size: 14px;
+    font-family: inter;
+    font-style: italic;
+}
+
+/* Hybrid Recommendation System Styles */
+.recommendation-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.recommendation-header h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 15px;
+    font-family: inter;
+}
+
+.recommendation-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inter;
+}
+
+.ai-stat {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+}
+
+.survey-stat {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #42a5f5;
+}
+
+.recommendation-subtitle {
+    color: #666;
+    font-size: 16px;
+    font-family: inter;
+    font-style: italic;
+}
+
+.recommendation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Enhanced Package Cards with Labels */
+.package-card {
+    position: relative;
+    background-color: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    overflow: hidden;
+}
+
+.ai-card {
+    border-color: #4caf50;
+}
+
+.ai-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(76, 175, 80, 0.25);
+}
+
+.survey-card {
+    border-color: #1976d2;
+}
+
+.survey-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(25, 118, 210, 0.25);
+}
+
+/* Recommendation Labels */
+.recommendation-label {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inter;
+    z-index: 10;
+}
+
+.ai-label {
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    color: white;
+}
+
+.survey-label {
+    background: linear-gradient(135deg, #1976d2, #1565c0);
+    color: white;
+}
+
+/* Match Score */
+.match-score {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: inter;
+}
+
+.ai-card .match-score {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+}
+
+.survey-card .match-score {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #42a5f5;
+}
+
+.recommendation-source {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-family: inter;
+}
+
+/* Package Details */
+.package-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+    font-family: inter;
+}
+
+.package-details {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-family: inter;
+}
+
+.package-category {
+    display: inline-block;
+    background-color: #f5f5f5;
+    color: #666;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    font-family: inter;
+    text-transform: uppercase;
+}
+
+.package-price {
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: inter;
+}
+
+/* Buttons */
+.btn-choose {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: inter;
+}
+
+.ai-choose {
+    background-color: #4caf50;
+    color: white;
+}
+
+.ai-choose:hover {
+    background-color: #45a049;
+    transform: scale(1.02);
+}
+
+.survey-choose {
+    background-color: #1976d2;
+    color: white;
+}
+
+.survey-choose:hover {
+    background-color: #1e88e5;
+    transform: scale(1.02);
+}
+
+/* Enhanced Package Cards */
+.package-card {
+    position: relative;
+    background-color: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    overflow: hidden;
+}
+
+.ml-card {
+    border-color: #4caf50;
+}
+
+.ml-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(76, 175, 80, 0.25);
+}
+
+.survey-card {
+    border-color: #1976d2;
+}
+
+.survey-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(25, 118, 210, 0.25);
+}
+
+.priority-1 {
+    background: linear-gradient(135deg, #fff 0%, #f8fff8 100%);
+    border-color: #2e7d32;
+}
+
+.priority-2 {
+    background: linear-gradient(135deg, #fff 0%, #f8fff8 100%);
+    border-color: #388e3c;
+}
+
+/* Recommendation Indicators */
+.ml-indicator, .survey-indicator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inter;
+    z-index: 10;
+}
+
+.ml-indicator {
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    color: white;
+}
+
+.survey-indicator {
+    background: linear-gradient(135deg, #1976d2, #1565c0);
+    color: white;
+}
+
+.priority-badge {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+/* Match Scores */
+.match-score {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    font-family: inter;
+}
+
+.ml-score {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+}
+
+.survey-score {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #42a5f5;
+}
+
+.ml-confidence {
+    background-color: #f1f8e9;
+    color: #33691e;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: inline-block;
+    font-family: inter;
+    border: 1px solid #689f38;
+}
+
+.ml-confidence i {
+    margin-right: 5px;
+}
+
+/* Package Details */
+.package-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+    font-family: inter;
+}
+
+.package-details {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-family: inter;
+}
+
+.package-category {
+    display: inline-block;
+    background-color: #f5f5f5;
+    color: #666;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    font-family: inter;
+    text-transform: uppercase;
+}
+
+.package-price {
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: inter;
+}
