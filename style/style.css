@@ -1123,3 +1123,80 @@ footer .footer-container .footer-content-container .lisence .up-button a i {
     margin-bottom: 20px;
     font-family: inter;
 }
+
+/* === User Profile Styles === */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inter;
+    font-weight: 500;
+}
+
+.profile-icon:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.profile-icon i {
+    color: #333;
+}
+
+.profile-icon span {
+    color: #333;
+}
+
+.logout-btn {
+    padding: 8px 15px;
+    background-color: #EB3F3F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inter;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+/* === Error Message Styles === */
+.error-message {
+    color: #EB3F3F;
+    background-color: #ffebee;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 14px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.error-message.success {
+    color: #4CAF50;
+    background-color: #e8f5e8;
+}
+
+.error-message.show {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}

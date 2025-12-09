@@ -655,6 +655,13 @@ class HybridRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_packages()
         elif self.path == '/api/health':
             self.health_check()
+        elif self.path.startswith('/api/user/'):
+            # Extract user ID from path
+            try:
+                user_id = int(self.path.split('/')[-1])
+                self.handle_user_profile(user_id)
+            except (ValueError, IndexError):
+                self.send_error(400)
         else:
             super().do_GET()
 
@@ -662,6 +669,12 @@ class HybridRequestHandler(http.server.SimpleHTTPRequestHandler):
         """Handle POST requests"""
         if self.path == '/api/recommend':
             self.handle_hybrid_recommendation()
+        elif self.path == '/api/auth/register':
+            self.handle_register()
+        elif self.path == '/api/auth/login':
+            self.handle_login()
+        elif self.path == '/api/survey/submit':
+            self.handle_survey_submission()
         else:
             self.send_error(404)
 
@@ -738,6 +751,243 @@ class HybridRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         except Exception as e:
             print(f"Error in hybrid recommendation: {e}")
+            self.send_response(500)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            error_response = json.dumps({'success': False, 'error': str(e)})
+            self.wfile.write(error_response.encode())
+
+    def handle_register(self):
+        """Handle user registration"""
+        content_length = int(self.headers.get('Content-Length', 0))
+        if content_length > 0:
+            post_data = self.rfile.read(content_length)
+        else:
+            post_data = b'{}'
+
+        try:
+            data = json.loads(post_data.decode('utf-8'))
+
+            # Connect to database
+            conn = sqlite3.connect(DB_NAME)
+            cursor = conn.cursor()
+
+            # Check if user already exists
+            cursor.execute('SELECT id FROM users WHERE email = ?', (data['email'],))
+            existing_user = cursor.fetchone()
+
+            if existing_user:
+                conn.close()
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                error_response = json.dumps({'success': False, 'error': 'Email already registered'})
+                self.wfile.write(error_response.encode())
+                return
+
+            # Insert new user
+            cursor.execute('''
+                INSERT INTO users (name, email, password, phone)
+                VALUES (?, ?, ?, ?)
+            ''', (data['name'], data['email'], data['password'], data['phone']))
+
+            user_id = cursor.lastrowid
+            conn.commit()
+
+            # Get user data
+            cursor.execute('SELECT id, name, email, phone, package FROM users WHERE id = ?', (user_id,))
+            user = cursor.fetchone()
+            conn.close()
+
+            if user:
+                user_data = {
+                    'id': user[0],
+                    'name': user[1],
+                    'email': user[2],
+                    'phone': user[3],
+                    'package': user[4]
+                }
+
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                response = json.dumps({'success': True, 'user': user_data})
+                self.wfile.write(response.encode())
+            else:
+                self.send_response(500)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                error_response = json.dumps({'success': False, 'error': 'Registration failed'})
+                self.wfile.write(error_response.encode())
+
+        except Exception as e:
+            print(f"Error in registration: {e}")
+            self.send_response(500)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            error_response = json.dumps({'success': False, 'error': str(e)})
+            self.wfile.write(error_response.encode())
+
+    def handle_login(self):
+        """Handle user login"""
+        content_length = int(self.headers.get('Content-Length', 0))
+        if content_length > 0:
+            post_data = self.rfile.read(content_length)
+        else:
+            post_data = b'{}'
+
+        try:
+            data = json.loads(post_data.decode('utf-8'))
+
+            # Connect to database
+            conn = sqlite3.connect(DB_NAME)
+            cursor = conn.cursor()
+
+            # Check user credentials
+            cursor.execute('''
+                SELECT id, name, email, phone, package
+                FROM users
+                WHERE email = ? AND password = ?
+            ''', (data['email'], data['password']))
+
+            user = cursor.fetchone()
+            conn.close()
+
+            if user:
+                user_data = {
+                    'id': user[0],
+                    'name': user[1],
+                    'email': user[2],
+                    'phone': user[3],
+                    'package': user[4]
+                }
+
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                response = json.dumps({'success': True, 'user': user_data})
+                self.wfile.write(response.encode())
+            else:
+                self.send_response(401)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                error_response = json.dumps({'success': False, 'error': 'Invalid email or password'})
+                self.wfile.write(error_response.encode())
+
+        except Exception as e:
+            print(f"Error in login: {e}")
+            self.send_response(500)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            error_response = json.dumps({'success': False, 'error': str(e)})
+            self.wfile.write(error_response.encode())
+
+    def handle_survey_submission(self):
+        """Handle survey submission from authenticated users"""
+        content_length = int(self.headers.get('Content-Length', 0))
+        if content_length > 0:
+            post_data = self.rfile.read(content_length)
+        else:
+            post_data = b'{}'
+
+        try:
+            data = json.loads(post_data.decode('utf-8'))
+
+            # Connect to database
+            conn = sqlite3.connect(DB_NAME)
+            cursor = conn.cursor()
+
+            # Store survey response
+            cursor.execute('''
+                INSERT INTO survey_responses (user_id, survey_data, recommendations)
+                VALUES (?, ?, ?)
+            ''', (data['user_id'], json.dumps(data['survey_data']), json.dumps(data['recommendations'])))
+
+            # Update user's last survey
+            cursor.execute('''
+                UPDATE users SET last_survey = ?, package = ?
+                WHERE id = ?
+            ''', (json.dumps(data['survey_data']), data.get('selected_package', None), data['user_id']))
+
+            conn.commit()
+            conn.close()
+
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            response = json.dumps({'success': True, 'message': 'Survey submitted successfully'})
+            self.wfile.write(response.encode())
+
+        except Exception as e:
+            print(f"Error in survey submission: {e}")
+            self.send_response(500)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            error_response = json.dumps({'success': False, 'error': str(e)})
+            self.wfile.write(error_response.encode())
+
+    def handle_user_profile(self, user_id):
+        """Handle user profile request"""
+        try:
+            # Connect to database
+            conn = sqlite3.connect(DB_NAME)
+            cursor = conn.cursor()
+
+            # Get user data
+            cursor.execute('''
+                SELECT id, name, email, phone, package, created_at
+                FROM users
+                WHERE id = ?
+            ''', (user_id,))
+
+            user = cursor.fetchone()
+
+            # Get survey responses count
+            cursor.execute('''
+                SELECT COUNT(*) FROM survey_responses WHERE user_id = ?
+            ''', (user_id,))
+
+            survey_count = cursor.fetchone()[0]
+
+            conn.close()
+
+            if user:
+                user_data = {
+                    'id': user[0],
+                    'name': user[1],
+                    'email': user[2],
+                    'phone': user[3],
+                    'package': user[4],
+                    'created_at': user[5],
+                    'survey_count': survey_count
+                }
+
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                response = json.dumps({'success': True, 'user': user_data})
+                self.wfile.write(response.encode())
+            else:
+                self.send_response(404)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                error_response = json.dumps({'success': False, 'error': 'User not found'})
+                self.wfile.write(error_response.encode())
+
+        except Exception as e:
+            print(f"Error getting user profile: {e}")
             self.send_response(500)
             self.send_header('Content-type', 'application/json')
             self.send_header('Access-Control-Allow-Origin', '*')

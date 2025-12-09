@@ -115,7 +115,6 @@ const surveyQuestions = [
 // State
 let currentQuestion = 0;
 let surveyAnswers = {};
-let currentUser = null;
 
 // Elements
 const surveyBtn = document.getElementById('surveyBtn');
@@ -127,6 +126,18 @@ const btnSubmit = document.getElementById('btnSubmit');
 const recommendationsContainer = document.getElementById('recommendationsContainer');
 const recommendationCards = document.getElementById('recommendationCards');
 const retakeBtn = document.getElementById('retakeBtn');
+
+// Check if all survey elements exist
+if (surveyBtn && surveyModal && surveyQuestionsContainer) {
+    // Initialize Survey
+    initSurvey();
+} else {
+    console.warn('Some survey elements not found:', {
+        surveyBtn: !!surveyBtn,
+        surveyModal: !!surveyModal,
+        surveyQuestionsContainer: !!surveyQuestionsContainer
+    });
+}
 
 // Initialize Survey
 function initSurvey() {
@@ -178,81 +189,122 @@ function initSurvey() {
 }
 
 // Show Survey Modal
-surveyBtn.addEventListener('click', () => {
-    surveyModal.classList.add('active');
-    currentQuestion = 0;
-    surveyAnswers = {};
-    initSurvey();
-    updateButtons();
-});
+if (surveyBtn) {
+    surveyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        surveyModal.classList.add('active');
+        currentQuestion = 0;
+        surveyAnswers = {};
+        initSurvey();
+        updateButtons();
+    });
+}
 
 // Close modal when clicking outside
-surveyModal.addEventListener('click', (e) => {
-    if (e.target === surveyModal) {
-        surveyModal.classList.remove('active');
-    }
-});
+if (surveyModal) {
+    surveyModal.addEventListener('click', (e) => {
+        if (e.target === surveyModal) {
+            e.preventDefault();
+            surveyModal.classList.remove('active');
+        }
+    });
+}
+
+// Prevent form submission
+const surveyForm = document.getElementById('surveyForm');
+if (surveyForm) {
+    surveyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+}
 
 // Navigation
-btnPrev.addEventListener('click', () => {
-    if (currentQuestion > 0) {
-        saveCurrentAnswer();
-        currentQuestion--;
-        showQuestion(currentQuestion);
-        updateButtons();
-    }
-});
+if (btnPrev) {
+    btnPrev.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentQuestion > 0) {
+            saveCurrentAnswer();
+            currentQuestion--;
+            showQuestion(currentQuestion);
+            updateButtons();
+        }
+    });
+}
 
-btnNext.addEventListener('click', () => {
-    if (validateCurrentQuestion()) {
-        saveCurrentAnswer();
-        currentQuestion++;
-        showQuestion(currentQuestion);
-        updateButtons();
-    } else {
-        alert('Silakan pilih minimal satu jawaban');
-    }
-});
+if (btnNext) {
+    btnNext.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (validateCurrentQuestion()) {
+            saveCurrentAnswer();
+            currentQuestion++;
+            showQuestion(currentQuestion);
+            updateButtons();
+        } else {
+            alert('Silakan pilih minimal satu jawaban');
+        }
+    });
+}
 
-btnSubmit.addEventListener('click', async () => {
-    if (validateCurrentQuestion()) {
-        saveCurrentAnswer();
+if (btnSubmit) {
+    btnSubmit.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (validateCurrentQuestion()) {
+            saveCurrentAnswer();
 
-        // Add phone model data to survey
-        surveyAnswers.phone_model = document.querySelector('input[name="phone_model"]:checked')?.value;
+            // Add phone model data to survey
+            surveyAnswers.phone_model = document.querySelector('input[name="phone_model"]:checked')?.value;
 
-        // Show loading state
-        btnSubmit.disabled = true;
-        btnSubmit.textContent = 'Processing...';
+            // Show loading state
+            btnSubmit.disabled = true;
+            btnSubmit.textContent = 'Processing...';
 
-        try {
-            // Send data to Python backend
-            const backendResult = await sendSurveyToPython(surveyAnswers);
+            try {
+                // Send data to Python backend
+                const backendResult = await sendSurveyToPython(surveyAnswers);
 
-            if (backendResult) {
-                displayRecommendations(backendResult.recommendations, backendResult.metadata);
-            } else {
+                if (backendResult) {
+                    displayRecommendations(backendResult.recommendations, backendResult.metadata);
+
+                    // Submit survey to server for authenticated users
+                    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                    if (currentUser) {
+                        await submitSurveyToServer(currentUser.id, surveyAnswers, backendResult.recommendations);
+                    }
+                } else {
+                    // Fallback to frontend calculation
+                    calculateRecommendations();
+                }
+            } catch (error) {
+                console.error('Error processing recommendations:', error);
                 // Fallback to frontend calculation
                 calculateRecommendations();
+            } finally {
+                btnSubmit.disabled = false;
+                btnSubmit.textContent = 'Submit';
+                surveyModal.classList.remove('active');
+                showRecommendations();
             }
-        } catch (error) {
-            console.error('Error processing recommendations:', error);
-            // Fallback to frontend calculation
-            calculateRecommendations();
-        } finally {
-            btnSubmit.disabled = false;
-            btnSubmit.textContent = 'Submit';
-            surveyModal.classList.remove('active');
-            showRecommendations();
+        } else {
+            alert('Silakan pilih minimal satu jawaban');
         }
-    } else {
-        alert('Silakan pilih minimal satu jawaban');
-    }
-});
+    });
+}
 
-retakeBtn.addEventListener('click', () => {
-    surveyBtn.click();
-});
+if (retakeBtn) {
+    retakeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (surveyBtn) {
+            surveyModal.classList.add('active');
+            currentQuestion = 0;
+            surveyAnswers = {};
+            initSurvey();
+            updateButtons();
+        }
+    });
+}
 
 function showQuestion(index) {
     const questions = document.querySelectorAll('.survey-question');
@@ -510,47 +562,7 @@ function showRecommendations() {
     surveyBtn.textContent = 'Retake Survey';
 }
 
-// Authentication State Management
-function checkAuthState() {
-    const savedUser = localStorage.getItem('currentUser');
-    if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        showUserProfile();
-    } else {
-        showLoginButtons();
-    }
-}
-
-function showUserProfile() {
-    const loginBtn = document.getElementById('loginBtn');
-    const signupBtn = document.getElementById('signupBtn');
-    const userProfile = document.getElementById('userProfile');
-
-    loginBtn.style.display = 'none';
-    signupBtn.style.display = 'none';
-    userProfile.style.display = 'flex';
-
-    // Update user avatar with initial
-    const userAvatar = document.getElementById('userAvatar');
-    userAvatar.innerHTML = currentUser.name.charAt(0).toUpperCase();
-}
-
-function showLoginButtons() {
-    const loginBtn = document.getElementById('loginBtn');
-    const signupBtn = document.getElementById('signupBtn');
-    const userProfile = document.getElementById('userProfile');
-
-    loginBtn.style.display = 'block';
-    signupBtn.style.display = 'block';
-    userProfile.style.display = 'none';
-}
-
-function logout() {
-    localStorage.removeItem('currentUser');
-    currentUser = null;
-    showLoginButtons();
-    alert('Anda telah berhasil logout');
-}
+// Authentication is now handled by auth.js - these functions are removed
 
 // Survey integration with AI Model + Survey Analysis
 async function sendSurveyToPython(surveyData) {
@@ -583,69 +595,40 @@ async function sendSurveyToPython(surveyData) {
     return null;
 }
 
-function showUserProfileModal() {
-    // Create user profile modal
-    const modal = document.createElement('div');
-    modal.className = 'user-modal';
-    modal.innerHTML = `
-        <div class="user-modal-content">
-            <div class="user-modal-header">
-                <h2>User Profile</h2>
-                <button class="close-modal" onclick="this.closest('.user-modal').remove()">
-                    <i class="fa-solid fa-times"></i>
-                </button>
-            </div>
-            <div class="user-profile-info">
-                <div class="profile-avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
-                <div class="profile-details">
-                    <h3>${currentUser.name}</h3>
-                    <p>${currentUser.email}</p>
-                    <p><strong>ID Pelanggan:</strong> ${currentUser.id || 'ID' + Math.random().toString(36).substr(2, 9)}</p>
-                </div>
-            </div>
+// User profile is now handled by profile.html page
 
-            <div class="package-status">
-                <h4>Paket Aktif</h4>
-                <div class="active-package">
-                    <div class="package-info">
-                        <h5>${currentUser.package || 'Sphinx Stable 20GB'}</h5>
-                        <p>Kuota: <span id="quotaUsed">15</span>GB / <span id="quotaTotal">20</span>GB</p>
-                    </div>
-                    <div class="data-usage-chart">
-                        <div class="pie-chart" id="pieChart" style="background: conic-gradient(
-                            #4CAF50 0% 75%,  /* 75% Terpakai */
-                            #ddd 75% 100%    /* 25% Sisa */
-                        );"></div>
-                        <div class="chart-legend">
-                            <span class="legend-item">
-                                <span class="legend-color" style="background: #4CAF50;"></span>
-                                Terpakai
-                            </span>
-                            <span class="legend-item">
-                                <span class="legend-color" style="background: #ddd;"></span>
-                                Sisa
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-}
+// Event Listeners for Authentication - these are now handled by auth.js
+// The logout and profile functions are called directly from HTML onclick handlers
 
-// Event Listeners for Authentication
-document.getElementById('logoutBtn').addEventListener('click', logout);
+// Submit survey to server for authenticated users
+async function submitSurveyToServer(userId, surveyData, recommendations) {
+    try {
+        const response = await fetch('http://localhost:8000/api/survey/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                survey_data: surveyData,
+                recommendations: recommendations,
+                selected_package: null // Can be updated when user selects a package
+            })
+        });
 
-document.getElementById('profileLink').addEventListener('click', (e) => {
-    e.preventDefault();
-    if (currentUser) {
-        showUserProfileModal();
+        const result = await response.json();
+        if (result.success) {
+            console.log('Survey submitted successfully to server');
+        } else {
+            console.error('Failed to submit survey:', result.error);
+        }
+    } catch (error) {
+        console.error('Error submitting survey to server:', error);
     }
-});
+}
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-    initSurvey();
-    checkAuthState();
+    // Auth state is now handled by auth.js
+    // Survey initialization happens above if elements exist
 });

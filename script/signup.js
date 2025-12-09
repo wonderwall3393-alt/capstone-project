@@ -4,7 +4,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   const currentUser = localStorage.getItem("currentUser");
   if (currentUser) {
-    window.location.href = "./home-before.html";
+    window.location.href = "./beranda.html";
   }
 });
 
@@ -75,7 +75,7 @@ document
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: username,
+          name: username,
           email: email,
           phone: phone,
           password: password,
@@ -85,14 +85,17 @@ document
       const result = await response.json();
 
       if (result.success) {
-        showSuccess("Account created successfully! Redirecting to login...");
+        // Store user data in localStorage
+        localStorage.setItem('currentUser', JSON.stringify(result.user));
+
+        showSuccess("Account created successfully! Redirecting...");
         setTimeout(() => {
-          window.location.href = "./login.html";
+          window.location.href = "./beranda.html";
         }, 2000);
       } else {
         showError(result.error || "Registration failed. Please try again.");
         signupBtn.disabled = false;
-        signupBtn.textContent = "Sign Up";
+        signupBtn.textContent = "Daftar";
       }
     } catch (error) {
       console.error("Registration error:", error);

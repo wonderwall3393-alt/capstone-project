@@ -33,6 +33,13 @@
                 <a class="button-login" href="./login.html">Masuk</a>
                 <a class="button-signup" href="./signup.html">Daftar</a>
             </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <div class="profile-icon" onclick="goToProfile()">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="userName">User</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
         </nav>
         <label class="box1" id="box1">
             <input type="checkbox" id="menu">
@@ -66,8 +73,8 @@
                 </div>
             </div>
         </section>
-    <!-- Recommendation Section -->
-    <section class="recommendation-section" id="recommendationSection">
+    <!-- Recommendation Section (only for authenticated users) -->
+    <section class="recommendation-section" id="recommendationSection" style="display: none;" data-auth-required="true">
         <div class="recommendation-header">
             <h2>For You</h2>
             <div class="header-line"></div>
@@ -88,18 +95,20 @@
     <!-- Survey Modal -->
     <div class="survey-modal" id="surveyModal">
         <div class="survey-content">
-            <div id="surveyQuestions">
-                <!-- Questions will be dynamically inserted here -->
-            </div>
-            <div class="survey-buttons">
-                <button class="btn-prev" id="btnPrev" disabled>Previous</button>
-                <button class="btn-next" id="btnNext">Next</button>
-                <button class="btn-submit" id="btnSubmit" style="display: none;">Submit</button>
-            </div>
+            <form id="surveyForm" onsubmit="event.preventDefault();">
+                <div id="surveyQuestions">
+                    <!-- Questions will be dynamically inserted here -->
+                </div>
+                <div class="survey-buttons">
+                    <button type="button" class="btn-prev" id="btnPrev" disabled>Previous</button>
+                    <button type="button" class="btn-next" id="btnNext">Next</button>
+                    <button type="button" class="btn-submit" id="btnSubmit" style="display: none;">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
-    <script src="./script/home.js"></script>
-        <section class="quotes-section">
+
+    <section class="quotes-section">
             <div class="quotes-content-container">
                 <div class="img-container">
                     <div class="img1" data-aos="fade-upt"></div>
@@ -161,6 +170,10 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="./script/home.js"></script>
+    <script src="./script/auth.js"></script>
     <script>
         feather.replace();
     </script>
