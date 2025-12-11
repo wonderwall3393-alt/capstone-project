@@ -192,11 +192,26 @@ function initSurvey() {
 if (surveyBtn) {
     surveyBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        surveyModal.classList.add('active');
-        currentQuestion = 0;
-        surveyAnswers = {};
-        initSurvey();
-        updateButtons();
+
+        // Check if user already has survey results
+        if (hasCompletedSurvey()) {
+            if (confirm('Anda sudah pernah melakukan survey. Apakah Anda ingin mengulang survey?')) {
+                // Clear previous results and start new survey
+                clearSurveyResults();
+                surveyModal.classList.add('active');
+                currentQuestion = 0;
+                surveyAnswers = {};
+                initSurvey();
+                updateButtons();
+            }
+        } else {
+            // First time survey
+            surveyModal.classList.add('active');
+            currentQuestion = 0;
+            surveyAnswers = {};
+            initSurvey();
+            updateButtons();
+        }
     });
 }
 
@@ -265,22 +280,44 @@ if (btnSubmit) {
                 // Send data to Python backend
                 const backendResult = await sendSurveyToPython(surveyAnswers);
 
+                let recommendations, metadata;
+
                 if (backendResult) {
-                    displayRecommendations(backendResult.recommendations, backendResult.metadata);
+                    recommendations = backendResult.recommendations;
+                    metadata = backendResult.metadata;
+
+                    displayRecommendations(recommendations, metadata);
 
                     // Submit survey to server for authenticated users
                     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
                     if (currentUser) {
-                        await submitSurveyToServer(currentUser.id, surveyAnswers, backendResult.recommendations);
+                        await submitSurveyToServer(currentUser.id, surveyAnswers, recommendations);
                     }
                 } else {
                     // Fallback to frontend calculation
-                    calculateRecommendations();
+                    recommendations = calculateRecommendations();
+                    metadata = {
+                        total_recommendations: recommendations.length,
+                        recommendation_source: 'Frontend Calculation',
+                        ml_model_used: false
+                    };
                 }
+
+                // Save survey results to localStorage
+                saveSurveyResults(recommendations, metadata);
+
             } catch (error) {
                 console.error('Error processing recommendations:', error);
                 // Fallback to frontend calculation
-                calculateRecommendations();
+                const recommendations = calculateRecommendations();
+                const metadata = {
+                    total_recommendations: recommendations.length,
+                    recommendation_source: 'Frontend Calculation',
+                    ml_model_used: false
+                };
+
+                // Save survey results to localStorage even if there's an error
+                saveSurveyResults(recommendations, metadata);
             } finally {
                 btnSubmit.disabled = false;
                 btnSubmit.textContent = 'Submit';
@@ -390,6 +427,7 @@ function calculateRecommendations() {
         .slice(0, 6);
 
     displayRecommendations(topRecommendations);
+    return topRecommendations;
 }
 
 function calculateUsageMatch(pkg) {
@@ -505,6 +543,10 @@ function displayRecommendations(recommendations, metadata = null) {
             <div class="stat-item survey-stat">
                 <span>Survey Analysis: ${surveyCount} paket</span>
             </div>
+            <button class="clear-results-btn" onclick="clearSurveyResults()" title="Hapus hasil survey">
+                <i class="fa-solid fa-trash"></i>
+                Hapus Hasil
+            </button>
         </div>
         <div class="recommendation-subtitle">Total ${recommendations.length} rekomendasi ditemukan</div>
     `;
@@ -515,27 +557,37 @@ function displayRecommendations(recommendations, metadata = null) {
     cardsContainer.className = 'recommendation-cards-contrainer';
 
     // Add all recommendation cards with clear labels
-    recommendations.forEach(pkg => {
+    recommendations.forEach((pkg, index) => {
         const isAI = pkg.recommendation_type === 'ml_model';
         const matchPercentage = pkg.match_percentage || Math.round((pkg.score || 0) * 100);
 
-        const cardHTML = createHybridRecommendationCard(pkg, isAI, matchPercentage);
+        const cardHTML = createHybridRecommendationCard(pkg, isAI, matchPercentage, index);
         cardsContainer.innerHTML += cardHTML;
     });
 
     recommendationCards.appendChild(cardsContainer);
 }
 
-function createHybridRecommendationCard(pkg, isAI, matchPercentage) {
+function createHybridRecommendationCard(pkg, isAI, matchPercentage, index) {
     const sourceText = isAI ? 'AI Model' : 'Survey Analysis';
     const sourceIcon = isAI ? 'fa-brain' : 'fa-user-poll';
     const sourceClass = isAI ? 'ai-card' : 'survey-card';
     const labelClass = isAI ? 'ai-label' : 'survey-label';
 
+    // Create package data for URL parameters
+    const packageData = encodeURIComponent(JSON.stringify({
+        name: pkg.name,
+        kuota: pkg.kuota,
+        harga: pkg.harga,
+        category: pkg.category,
+        matchPercentage: matchPercentage,
+        source: sourceText
+    }));
+
     return `
     <div class="package-card ${sourceClass}">
             <div class="recommendation-label ${labelClass}">
-                
+
                 ${sourceText}
             </div>
             <div class="match-score">
@@ -550,7 +602,8 @@ function createHybridRecommendationCard(pkg, isAI, matchPercentage) {
         <div class="package-details">${pkg.kuota}</div>
         <div class="package-category">${pkg.category.charAt(0).toUpperCase() + pkg.category.slice(1)}</div>
         <div class="package-price">Rp ${pkg.harga.toLocaleString('id-ID')}</div>
-        <button class="btn-choose ${isAI ? 'ai-choose' : 'survey-choose'}">
+        <button class="btn-choose ${isAI ? 'ai-choose' : 'survey-choose'}"
+                onclick="selectPackageFromSurvey('${packageData}')">
             <i class="fa-solid fa-check"></i>
             Pilih Paket
         </button>
@@ -559,7 +612,41 @@ function createHybridRecommendationCard(pkg, isAI, matchPercentage) {
 
 function showRecommendations() {
     recommendationsContainer.classList.add('active');
-    surveyBtn.textContent = 'Retake Survey';
+
+    // Update button text based on whether this is a new survey or loaded from storage
+    const hasResults = hasCompletedSurvey();
+    if (hasResults) {
+        surveyBtn.textContent = 'Survey Ulang';
+    } else {
+        surveyBtn.textContent = 'Retake Survey';
+    }
+}
+
+// Function to handle package selection from survey
+function selectPackageFromSurvey(packageData) {
+    try {
+        // Decode and parse the package data
+        const package = JSON.parse(decodeURIComponent(packageData));
+
+        // Store selected package in localStorage for payment page
+        localStorage.setItem('selectedPackage', JSON.stringify(package));
+
+        // Store additional survey context
+        const surveyContext = {
+            fromSurvey: true,
+            surveyAnswers: surveyAnswers,
+            selectedAt: new Date().toISOString()
+        };
+        localStorage.setItem('surveyContext', JSON.stringify(surveyContext));
+
+        // Redirect ke payment.html menggunakan alur yang sama seperti di script.js
+        const paymentUrl = `./payment.html?quota=${encodeURIComponent(package.kuota)}&validity=${encodeURIComponent('30 Hari')}&price=${encodeURIComponent('Rp' + package.harga.toLocaleString('id-ID'))}`;
+        window.location.href = paymentUrl;
+
+    } catch (error) {
+        console.error('Error processing package selection:', error);
+        alert('Terjadi kesalahan saat memilih paket. Silakan coba lagi.');
+    }
 }
 
 // Authentication is now handled by auth.js - these functions are removed
@@ -627,8 +714,161 @@ async function submitSurveyToServer(userId, surveyData, recommendations) {
     }
 }
 
+// Function to save survey results to localStorage
+function saveSurveyResults(recommendations, metadata) {
+    console.log('=== SAVING SURVEY RESULTS ===');
+    console.log('Recommendations to save:', recommendations.length);
+    console.log('Metadata:', metadata);
+
+    const surveyResults = {
+        recommendations: recommendations,
+        metadata: metadata,
+        surveyAnswers: surveyAnswers,
+        completedAt: new Date().toISOString(),
+        expiresAt: new Date(Date.now() + (24 * 60 * 60 * 1000)).toISOString() // Expire after 24 hours
+    };
+
+    localStorage.setItem('surveyResults', JSON.stringify(surveyResults));
+    console.log('Survey results saved successfully');
+    console.log('Expires at:', surveyResults.expiresAt);
+}
+
+// Function to load and display saved survey results
+function loadSavedSurveyResults() {
+    console.log('=== LOADING SAVED SURVEY RESULTS ===');
+
+    const savedResults = localStorage.getItem('surveyResults');
+    console.log('Saved results found:', !!savedResults);
+
+    if (savedResults) {
+        try {
+            const surveyData = JSON.parse(savedResults);
+            console.log('Survey data parsed:', surveyData);
+
+            const now = new Date();
+            const expiresAt = new Date(surveyData.expiresAt);
+
+            console.log('Current time:', now);
+            console.log('Expires at:', expiresAt);
+            console.log('Is expired:', now >= expiresAt);
+
+            // Check if results are still valid (not expired)
+            if (now < expiresAt) {
+                console.log('Results are still valid, displaying recommendations...');
+
+                // Check if recommendation elements exist
+                const recommendationsContainer = document.getElementById('recommendationsContainer');
+                const recommendationCards = document.getElementById('recommendationCards');
+
+                console.log('Recommendations container found:', !!recommendationsContainer);
+                console.log('Recommendation cards found:', !!recommendationCards);
+
+                if (recommendationsContainer && recommendationCards) {
+                    // Display saved recommendations
+                    displayRecommendations(surveyData.recommendations, surveyData.metadata);
+                    showRecommendations();
+
+                    // Update button text
+                    const surveyBtn = document.getElementById('surveyBtn');
+                    if (surveyBtn) {
+                        surveyBtn.textContent = 'Survey Ulang';
+                    }
+
+                    console.log('Successfully loaded and displayed survey results from', new Date(surveyData.completedAt));
+                    console.log('Number of recommendations:', surveyData.recommendations.length);
+                    return true;
+                } else {
+                    console.warn('Recommendation elements not found, cannot display results');
+                }
+            } else {
+                // Results expired, remove them
+                console.log('Survey results expired, removing from storage');
+                localStorage.removeItem('surveyResults');
+                localStorage.removeItem('surveyContext');
+            }
+        } catch (error) {
+            console.error('Error loading saved survey results:', error);
+            localStorage.removeItem('surveyResults');
+        }
+    }
+
+    console.log('No valid survey results to load');
+    return false;
+}
+
+// Function to check if user has completed survey
+function hasCompletedSurvey() {
+    const savedResults = localStorage.getItem('surveyResults');
+
+    if (savedResults) {
+        try {
+            const surveyData = JSON.parse(savedResults);
+            const now = new Date();
+            const expiresAt = new Date(surveyData.expiresAt);
+            return now < expiresAt;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    return false;
+}
+
+// Function to clear survey results (for retake)
+function clearSurveyResults() {
+    localStorage.removeItem('surveyResults');
+    localStorage.removeItem('surveyContext');
+    localStorage.removeItem('selectedPackage');
+
+    // Hide recommendations
+    const recommendationsContainer = document.getElementById('recommendationsContainer');
+    if (recommendationsContainer) {
+        recommendationsContainer.classList.remove('active');
+    }
+
+    // Reset button text
+    const surveyBtn = document.getElementById('surveyBtn');
+    if (surveyBtn) {
+        surveyBtn.textContent = 'Survey Pengguna';
+    }
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-    // Auth state is now handled by auth.js
-    // Survey initialization happens above if elements exist
+    console.log('=== HOME.JS INITIALIZATION ===');
+
+    // Wait for DOM and auth to be ready
+    setTimeout(() => {
+        // Check for saved survey results and display them
+        const hasResults = loadSavedSurveyResults();
+
+        if (hasResults) {
+            console.log('Survey results found and displayed');
+        } else {
+            console.log('No saved survey results found');
+        }
+
+        // Modify retake button behavior to clear results
+        const retakeBtn = document.getElementById('retakeBtn');
+        if (retakeBtn) {
+            // Remove existing event listener and add new one
+            retakeBtn.replaceWith(retakeBtn.cloneNode(true));
+            const newRetakeBtn = document.getElementById('retakeBtn');
+            if (newRetakeBtn) {
+                newRetakeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (confirm('Ini akan menghapus hasil survey sebelumnya. Lanjutkan survey baru?')) {
+                        clearSurveyResults();
+                        if (surveyBtn) {
+                            surveyModal.classList.add('active');
+                            currentQuestion = 0;
+                            surveyAnswers = {};
+                            initSurvey();
+                            updateButtons();
+                        }
+                    }
+                });
+            }
+        }
+    }, 200); // Wait for auth.js to complete
 });

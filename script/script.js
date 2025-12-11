@@ -323,6 +323,10 @@ function processPayment() {
     const validity = params.get('validity') || '30 Hari';
     const price = params.get('price') || 'Rp50.000';
 
+    // Get selected package and survey context
+    const selectedPackage = JSON.parse(localStorage.getItem('selectedPackage'));
+    const surveyContext = JSON.parse(localStorage.getItem('surveyContext'));
+
     // Simpan semua data ke sessionStorage
     sessionStorage.setItem('paymentPhone', phone);
     sessionStorage.setItem('paymentType', selectedPaymentType);
@@ -330,6 +334,12 @@ function processPayment() {
     sessionStorage.setItem('packageQuota', quota);
     sessionStorage.setItem('packageValidity', validity);
     sessionStorage.setItem('packagePrice', price);
+
+    // Submit survey data to server if this is from survey and user is logged in
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && surveyContext && surveyContext.fromSurvey) {
+        submitSurveyPaymentData(currentUser.id, selectedPackage);
+    }
 
     const btnPay = document.getElementById('btnPay');
     if (btnPay) {
@@ -341,6 +351,38 @@ function processPayment() {
     setTimeout(() => {
         window.location.href = 'proof.html';
     }, 500);
+}
+
+// Function to submit survey payment data to server
+async function submitSurveyPaymentData(userId, selectedPackage) {
+    try {
+        const surveyContext = JSON.parse(localStorage.getItem('surveyContext'));
+
+        const response = await fetch('http://localhost:8000/api/survey/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                survey_data: surveyContext.surveyAnswers,
+                recommendations: [selectedPackage],
+                selected_package: selectedPackage.name,
+                payment_confirmed: true
+            })
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            console.log('Survey payment data submitted successfully');
+            // Clear survey data after submission
+            localStorage.removeItem('surveyContext');
+        } else {
+            console.error('Failed to submit survey payment data:', result.error);
+        }
+    } catch (error) {
+        console.error('Error submitting survey payment data:', error);
+    }
 }
 
 function cancelPayment() {

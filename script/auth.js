@@ -140,24 +140,39 @@ function loadUserProfile() {
     const currentUser = localStorage.getItem('currentUser');
 
     if (!currentUser) {
-        window.location.href = './login.html';
+        // Only redirect if we're on a page that requires authentication
+        if (window.location.pathname.includes('profile.html')) {
+            window.location.href = './login.html';
+        }
         return;
     }
 
     const user = JSON.parse(currentUser);
 
-    // Set user avatar
+    // Set user avatar (only if on profile page)
     const avatar = document.getElementById('profileAvatar');
-    const firstLetter = (user.name || user.email || 'U').charAt(0).toUpperCase();
-    avatar.innerHTML = firstLetter;
+    if (avatar) {
+        const firstLetter = (user.name || user.email || 'U').charAt(0).toUpperCase();
+        avatar.innerHTML = firstLetter;
+    }
 
-    // Set user information
-    document.getElementById('userNameDisplay').textContent = user.name || user.email;
-    document.getElementById('userName').textContent = user.name || user.email;
-    document.getElementById('userEmail').textContent = user.email;
-    document.getElementById('userPhone').textContent = user.phone || 'Belum diisi';
+    // Set user information (only if elements exist)
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    if (userNameDisplay) {
+        userNameDisplay.textContent = user.name || user.email;
+    }
 
-    // Set member since date
+    const userEmail = document.getElementById('userEmail');
+    if (userEmail) {
+        userEmail.textContent = user.email;
+    }
+
+    const userPhone = document.getElementById('userPhone');
+    if (userPhone) {
+        userPhone.textContent = user.phone || 'Belum diisi';
+    }
+
+    // Set member since date (only if element exists)
     if (user.created_at) {
         const date = new Date(user.created_at);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
