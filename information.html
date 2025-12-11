@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informasi - Sphinx Net</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/responsive.css" />
+    <link rel="stylesheet" href="./style/information.css" />
+
+    <link
+      rel="shortcut icon"
+      href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo-container" id="logoContainer">
+        <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40" />
+        <h3>Sphinx <span>Net.</span></h3>
+      </div>
+      <nav class="navigasi-container" id="navContainer">
+        <ul>
+          <li><a href="./beranda.html">Beranda</a></li>
+          <li><a href="./package.html">Paket</a></li>
+          <li><a href="./information.html" class="active">Informasi</a></li>
+          <li><a href="./about.html">Tentang Kita</a></li>
+        </ul>
+        <div class="button-SU-SI" id="buttonSU_SI">
+          <a class="button-login" href="./login.html">Masuk</a>
+          <a class="button-signup" href="./signup.html">Daftar</a>
+        </div>
+        <div class="user-profile" id="userProfile" style="display: none">
+          <div class="profile-icon" onclick="goToProfile()">
+            <i class="fa-solid fa-user"></i>
+            <span id="userName">User</span>
+          </div>
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+      </nav>
+      <label class="box1" id="box1">
+        <input type="checkbox" id="menu" />
+      </label>
+    </header>
+
+    <main>
+      <section class="info-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 data-aos="fade-up">Pusat Informasi</h1>
+          <p data-aos="fade-up" data-aos-delay="100">
+            Dapatkan informasi terbaru seputar promo, cara pembayaran, dan
+            hubungi kami
+          </p>
+        </div>
+      </section>
+
+      <section class="quick-nav">
+        <div class="nav-cards">
+          <a href="#news-section" class="nav-card" data-aos="fade-up">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h3>Promo & News</h3>
+            <p>Informasi promo terkini</p>
+          </a>
+          <a
+            href="#payment-section"
+            class="nav-card"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <i class="fa-solid fa-credit-card"></i>
+            <h3>Cara Pembayaran</h3>
+            <p>Panduan metode bayar</p>
+          </a>
+          <a
+            href="#contact-section"
+            class="nav-card"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <i class="fa-solid fa-headset"></i>
+            <h3>Hubungi Kami</h3>
+            <p>Layanan pelanggan 24/7</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="news-section" class="news-section">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Promo & Berita Terbaru</h2>
+          <p>Jangan lewatkan penawaran spesial dari Sphinx Net</p>
+        </div>
+
+        <div class="featured-banner" data-aos="zoom-in">
+          <div class="banner-content">
+            <div class="banner-badge">
+              <i class="fa-solid fa-star"></i>
+              <span>HOT PROMO</span>
+            </div>
+            <h2>Paket Super Seru</h2>
+            <p>
+              Super Seru kini termasuk langganan premium CATCHPLAY+ dan WeTV VIP
+              Mobile, serta banyak tambahan add-on digital lainnya dengan harga
+              terjangkau untuk hiburanmu!
+            </p>
+            <div class="banner-details">
+              <div class="detail-item">
+                <i class="fa-solid fa-calendar"></i>
+                <span>Berlaku hingga 31 Des 2025</span>
+              </div>
+              <div class="detail-item">
+                <i class="fa-solid fa-gift"></i>
+                <span>Bonus Kuota 20GB</span>
+              </div>
+            </div>
+            <a href="./package.html" class="btn-banner">Lihat Paket</a>
+          </div>
+          <div class="banner-image">
+            <img
+              src="./assets/images/cheerful-young-people-with-smartphones.jpg"
+              alt="Super Seru Promo"
+            />
+          </div>
+        </div>
+
+        <div class="news-grid">
+          <div class="news-card" data-aos="fade-up">
+            <div class="news-badge new">BARU</div>
+            <div class="news-image">
+              <img
+                src="./assets/images/jason-leung-7g0gCEiHtcc-unsplash.jpg"
+                alt="Serba Lima Ribu"
+              />
+            </div>
+            <div class="news-content">
+              <h3>Serba Lima Ribu</h3>
+              <p>
+                Receh modalnya, mewah serunya dengan paket internet mulai dari
+                lima ribuan bisa internetan seharian.
+              </p>
+              <div class="news-meta">
+                <span><i class="fa-solid fa-clock"></i> 2 hari yang lalu</span>
+              </div>
+              <a href="./package.html" class="btn-news">Selengkapnya</a>
+            </div>
+          </div>
+
+          <div class="news-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="news-badge promo">PROMO</div>
+            <div class="news-image">
+              <img
+                src="./assets/images/vitaly-gariev-4zQjir70arc-unsplash.jpg"
+                alt="Paket Gaming"
+              />
+            </div>
+            <div class="news-content">
+              <h3>Paket Gaming Terbaik</h3>
+              <p>
+                Dapatkan koneksi stabil khusus gaming dengan ping rendah dan
+                kuota unlimited untuk game favoritmu.
+              </p>
+              <div class="news-meta">
+                <span><i class="fa-solid fa-clock"></i> 5 hari yang lalu</span>
+              </div>
+              <a href="./package.html" class="btn-news">Selengkapnya</a>
+            </div>
+          </div>
+
+          <div class="news-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="news-badge update">UPDATE</div>
+            <div class="news-image">
+              <img
+                src="./assets/images/Businessman communicate on the phone _ premium….jpeg"
+                alt="WiFi 6"
+              />
+            </div>
+            <div class="news-content">
+              <h3>Upgrade ke WiFi 6</h3>
+              <p>
+                Teknologi WiFi 6 terbaru untuk kecepatan internet yang lebih
+                stabil dan cepat hingga 3x lipat.
+              </p>
+              <div class="news-meta">
+                <span
+                  ><i class="fa-solid fa-clock"></i> 1 minggu yang lalu</span
+                >
+              </div>
+              <a href="./package.html" class="btn-news">Selengkapnya</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="payment-section" class="payment-section">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Langkah Berlangganan</h2>
+          <p>Nikmati internet cepat dalam 4 langkah mudah bersama Sphinx Net</p>
+        </div>
+
+        <div class="payment-steps">
+          <div class="step-indicator" data-aos="fade-right">
+            <div class="step active" data-step="1">
+              <div class="step-number">1</div>
+              <span>Daftar Akun</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-step="2">
+              <div class="step-number">2</div>
+              <span>Pilih paket</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-step="3">
+              <div class="step-number">3</div>
+              <span>Isi Data & Bayar</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-step="4">
+              <div class="step-number">4</div>
+              <span>Selesai & Aktif</span>
+            </div>
+          </div>
+
+          <div class="step-content" data-aos="fade-left">
+            <div class="content-box active" data-content="1">
+              <h3>Daftar Sebagai User</h3>
+              <p>
+                Langkah pertama adalah membuat akun Sphinx Net agar kamu bisa
+                memantau kuota dan riwayat transaksi nantinya.
+              </p>
+              <div class="content-illustration">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+              </div>
+            </div>
+            <div class="content-box" data-content="2">
+              <h3>Lihat Paket Data</h3>
+              <p>
+                Tentukan kebutuhan internetmu. Kami menyediakan berbagai pilihan
+                paket mulai dari harian, mingguan, hingga bulanan.
+              </p>
+              <div class="step-details">
+                <div class="detail-point">
+                  <i class="fa-solid fa-circle-check"></i
+                  ><span>Paket Harian Hemat</span>
+                </div>
+                <div class="detail-point">
+                  <i class="fa-solid fa-circle-check"></i
+                  ><span>Paket Gaming</span>
+                </div>
+                <div class="detail-point">
+                  <i class="fa-solid fa-circle-check"></i
+                  ><span>Paket Unlimited Bulanan</span>
+                </div>
+              </div>
+              <div class="content-illustration">
+                <i class="fa-solid fa-clipboard-list"></i>
+              </div>
+            </div>
+            <div class="content-box" data-content="3">
+              <h3>Lengkapi Data & Pembayaran</h3>
+              <p>
+                Masukkan No.Telepon dan Email agar kami bisa mengirimkan detail
+                pesanan, lalu pilih metode pembayaran yang paling mudah buatmu.
+              </p>
+              <div class="step-details">
+                <div class="detail-point">
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span>Masukkan No. Telepon (untuk notifikasi)</span>
+                </div>
+                <div class="detail-point">
+                  <i class="fa-solid fa-envelope"></i>
+                  <span>Masukkan Email aktif (untuk invoice)</span>
+                </div>
+                <div class="detail-point">
+                  <i class="fa-solid fa-money-bill-wave"></i>
+                  <span>Pilih Transfer Bank / E-Wallet</span>
+                </div>
+              </div>
+              <div class="content-illustration">
+                <i class="fa-solid fa-credit-card"></i>
+              </div>
+            </div>
+            <div class="content-box" data-content="4">
+              <h3>Terima Invoice & Aktif</h3>
+              <p>
+                Selamat! Setelah pembayaran terkonfirmasi, invoice akan dikirim
+                ke email kamu dan paket internet akan otomatis aktif.
+              </p>
+
+              <div class="step-details">
+                <div class="detail-point">
+                  <i class="fa-solid fa-file-invoice"></i>
+                  <span>Invoice digital terbit</span>
+                </div>
+                <div class="detail-point">
+                  <i class="fa-solid fa-bolt"></i>
+                  <span>Internet aktif instan</span>
+                </div>
+                <div class="detail-point">
+                  <i class="fa-solid fa-gamepad"></i>
+                  <span>Siap digunakan browsing & gaming</span>
+                </div>
+              </div>
+
+              <div class="content-illustration">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-methods-grid" data-aos="fade-up">
+          <h3>Metode Pembayaran yang Tersedia</h3>
+          <div class="methods-container">
+            <div class="method-card">
+              <div class="method-icon">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+              <h4>Transfer Bank</h4>
+              <p>BCA, Mandiri, BNI, BRI, dan bank lainnya</p>
+            </div>
+            <div class="method-card">
+              <div class="method-icon"><i class="fa-solid fa-wallet"></i></div>
+              <h4>E-Wallet</h4>
+              <p>GoPay, OVO, Dana, ShopeePay</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact-section" class="contact-section">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Hubungi Kami</h2>
+          <p>Tim kami siap membantu Anda 24/7</p>
+        </div>
+        <div class="contact-container">
+          <div class="contact-info" data-aos="fade-right">
+            <div class="info-card">
+              <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+              <div class="info-content">
+                <h4>Telepon</h4>
+                <p>+62 812-3456-7890</p>
+                <span>Senin - Minggu, 24 Jam</span>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="info-content">
+                <h4>Email</h4>
+                <p>support@sphinxnet.id</p>
+                <span>Respon dalam 24 jam</span>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="info-content">
+                <h4>Alamat</h4>
+                <p>Jl. Raya Siman, Dusun I, Demangan</p>
+                <span>Kec. Siman, Kabupaten Ponorogo, Jawa Timur 63471</span>
+              </div>
+            </div>
+            <div class="social-media">
+              <h4>Ikuti Kami</h4>
+              <div class="social-icons">
+                <a href="#" class="social-icon facebook"
+                  ><i class="fa-brands fa-facebook-f"></i
+                ></a>
+                <a href="#" class="social-icon instagram"
+                  ><i class="fa-brands fa-instagram"></i
+                ></a>
+                <a href="#" class="social-icon twitter"
+                  ><i class="fa-brands fa-twitter"></i
+                ></a>
+                <a href="#" class="social-icon whatsapp"
+                  ><i class="fa-brands fa-whatsapp"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form" data-aos="fade-left">
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Nama Lengkap</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Masukkan nama Anda"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="contoh@email.com"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone">Nomor Telepon</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder="08xxxxxxxxxx"
+                />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subjek</label>
+                <select id="subject" name="subject" required>
+                  <option value="">Pilih Subjek</option>
+                  <option value="paket">Informasi Paket</option>
+                  <option value="teknis">Masalah Teknis</option>
+                  <option value="billing">Tagihan & Pembayaran</option>
+                  <option value="lainnya">Lainnya</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Pesan</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  placeholder="Tuliskan pesan Anda di sini..."
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-submit">
+                <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section" id="faq-section">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Pertanyaan Umum (FAQ)</h2>
+          <p>Temukan jawaban untuk pertanyaan yang sering diajukan</p>
+        </div>
+        <div class="faq-container" data-aos="fade-up">
+          <div class="faq-item">
+            <div class="faq-question">
+              <h4>Bagaimana cara berlangganan paket internet?</h4>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Anda dapat berlangganan melalui website kami dengan memilih
+                paket yang sesuai, kemudian melakukan pembayaran melalui metode
+                yang tersedia. Paket akan aktif dalam 5-10 menit setelah
+                pembayaran dikonfirmasi.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <h4>Apa yang harus dilakukan jika internet lambat?</h4>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Pastikan kuota Anda masih tersedia, restart modem/router, dan
+                periksa posisi perangkat. Jika masalah berlanjut, hubungi
+                customer service kami untuk bantuan lebih lanjut.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <h4>Bagaimana cara mengecek sisa kuota?</h4>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Anda dapat mengecek sisa kuota melalui halaman profil di website
+                kami atau melalui aplikasi Sphinx Net. Informasi kuota akan
+                diperbarui secara real-time.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <h4>Apakah bisa upgrade atau downgrade paket?</h4>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Ya, Anda dapat mengubah paket kapan saja melalui halaman profil.
+                Perubahan akan berlaku pada periode billing berikutnya atau
+                sesuai dengan ketentuan yang berlaku.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo-container">
+          <img
+            src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+            alt="logo"
+            height="150"
+          />
+          <h2 class="text-logo">Sphinx <span class="span1">Net.</span></h2>
+        </div>
+        <div class="footer-content-container">
+          <div class="footer-list">
+            <div class="list1">
+              <p>Paket</p>
+              <ul>
+                <li><a href="./package.html">paket pulsa</a></li>
+                <li><a href="./package.html">paket wifi</a></li>
+                <li><a href="./package.html">paket kuota</a></li>
+              </ul>
+            </div>
+            <div class="list2">
+              <p>Layanan</p>
+              <ul>
+                <li><a href="./login.html">masuk</a></li>
+                <li>
+                  <a href="./informasi.html#contact-section">kontak kami</a>
+                </li>
+                <li><a href="./about.html">tentang kami</a></li>
+              </ul>
+            </div>
+            <div class="list3">
+              <p>Informasi</p>
+              <ul>
+                <li><a href="./informasi.html#news-section">promo</a></li>
+                <li><a href="./informasi.html#news-section">berita</a></li>
+                <li><a href="./informasi.html#faq-section">FAQ</a></li>
+                <li><a href="#">terms & conditions</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="lisence">
+            <p>
+              Jl. Raya Siman, Dusun I, Demangan,<br />Kec. Siman, Kabupaten
+              Ponorogo, <br />Jawa Timur 63471
+            </p>
+            <p>© 2025 Sphinx Net. All Rights Reserved.</p>
+            <div class="up-button">
+              <a href="#top"><i class="fa-solid fa-chevron-up"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./script/auth.js"></script>
+    <script src="./script/animation.js"></script>
+    <script src="./script/information.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+      });
+    </script>
+  </body>
+</html>
