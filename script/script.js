@@ -28,7 +28,6 @@ async function loadPackageData() {
         renderPackages();
     } catch (error) {
         console.error('Error loading package data:', error);
-        // Fallback jika gagal load JSON
         showErrorMessage();
     }
 }
@@ -52,7 +51,6 @@ function showErrorMessage() {
 function renderPackages() {
     if (!packageData) return;
 
-    // Render Paket Kuota
     const quotaContainer = document.getElementById('quota');
     if (quotaContainer && packageData.quota) {
         quotaContainer.innerHTML = '';
@@ -61,7 +59,6 @@ function renderPackages() {
         });
     }
 
-    // Render Paket Pulsa
     const simCreditContainer = document.getElementById('sim-credit');
     if (simCreditContainer && packageData.simCredit) {
         simCreditContainer.innerHTML = '';
@@ -70,7 +67,6 @@ function renderPackages() {
         });
     }
 
-    // Render Paket WiFi
     const wifiContainer = document.getElementById('wifi');
     if (wifiContainer && packageData.wifi) {
         wifiContainer.innerHTML = '';
@@ -79,7 +75,6 @@ function renderPackages() {
         });
     }
 
-    // Attach event listeners setelah render
     attachCardEventListeners();
 }
 
@@ -125,7 +120,6 @@ function attachCardEventListeners() {
     packageCards.forEach(card => {
         card.style.cursor = 'pointer';
 
-        // Click event
         card.addEventListener('click', function () {
             const quota = this.dataset.quota || this.querySelector('.quota').textContent;
             const validity = this.dataset.validity || this.querySelector('.validity').textContent;
@@ -138,7 +132,6 @@ function attachCardEventListeners() {
             }, 150);
         });
 
-        // Hover events
         card.addEventListener('mouseenter', function () {
             this.style.boxShadow = '0 8px 20px rgba(235, 63, 63, 0.2)';
         });
@@ -324,16 +317,30 @@ function processPayment() {
         return;
     }
 
+    // Ambil data paket dari URL params
+    const params = new URLSearchParams(window.location.search);
+    const quota = params.get('quota') || '15 GB';
+    const validity = params.get('validity') || '30 Hari';
+    const price = params.get('price') || 'Rp50.000';
+
+    // Simpan semua data ke sessionStorage
+    sessionStorage.setItem('paymentPhone', phone);
+    sessionStorage.setItem('paymentType', selectedPaymentType);
+    sessionStorage.setItem('paymentProvider', selectedPaymentProvider);
+    sessionStorage.setItem('packageQuota', quota);
+    sessionStorage.setItem('packageValidity', validity);
+    sessionStorage.setItem('packagePrice', price);
+
     const btnPay = document.getElementById('btnPay');
     if (btnPay) {
         btnPay.textContent = 'Memproses...';
         btnPay.disabled = true;
     }
 
+    // Redirect ke halaman proof setelah delay singkat
     setTimeout(() => {
-        const modal = document.getElementById('successModal');
-        if (modal) modal.classList.add('active');
-    }, 1500);
+        window.location.href = 'proof.html';
+    }, 500);
 }
 
 function cancelPayment() {
@@ -348,15 +355,123 @@ function closeModal() {
 
 // Initialize saat DOM ready
 document.addEventListener('DOMContentLoaded', function () {
-    // Load package data jika ada container paket
     if (document.getElementById('quota') || document.getElementById('sim-credit') || document.getElementById('wifi')) {
         loadPackageData();
     }
 
-    // Setup payment page jika ada
     const phoneInput = document.getElementById('phoneNumber');
     if (phoneInput) {
         phoneInput.addEventListener('input', updatePayButton);
         getPackageData();
     }
 });
+
+// ===== PROOF PAGE FUNCTIONS =====
+
+// Generate transaction ID
+function generateTransactionId() {
+    const date = new Date();
+    const dateStr = date.toISOString().slice(0, 10).replace(/-/g, '');
+    const randomStr = Math.random().toString(36).substring(2, 7).toUpperCase();
+    return `TRX-${dateStr}-${randomStr}`;
+}
+
+// Format date time
+function formatDateTime() {
+    const date = new Date();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${day} ${month} ${year}, ${hours}:${minutes} WIB`;
+}
+
+// Load receipt data from sessionStorage
+function loadReceiptData() {
+    // Generate transaction ID
+    const transactionIdEl = document.getElementById('transactionId');
+    if (transactionIdEl) {
+        transactionIdEl.textContent = generateTransactionId();
+    }
+
+    // Set date time
+    const dateTimeEl = document.getElementById('dateTime');
+    if (dateTimeEl) {
+        dateTimeEl.textContent = formatDateTime();
+    }
+
+    // Ambil data dari sessionStorage
+    const phone = sessionStorage.getItem('paymentPhone') || '08xxxxxxxxxx';
+    const quota = sessionStorage.getItem('packageQuota') || '15 GB';
+    const validity = sessionStorage.getItem('packageValidity') || '30 Hari';
+    const price = sessionStorage.getItem('packagePrice') || 'Rp50.000';
+    const paymentType = sessionStorage.getItem('paymentType') || 'bank';
+    const paymentProvider = sessionStorage.getItem('paymentProvider') || 'BCA';
+
+    // Set phone number
+    const phoneNumberEl = document.getElementById('phoneNumber');
+    if (phoneNumberEl) {
+        phoneNumberEl.textContent = phone;
+    }
+
+    // Set package details
+    const packageQuotaEl = document.getElementById('packageQuota');
+    if (packageQuotaEl) {
+        packageQuotaEl.textContent = quota;
+    }
+
+    const packageValidityEl = document.getElementById('packageValidity');
+    if (packageValidityEl) {
+        packageValidityEl.textContent = validity;
+    }
+
+    const totalAmountEl = document.getElementById('totalAmount');
+    if (totalAmountEl) {
+        totalAmountEl.textContent = price;
+    }
+
+    // Set payment method
+    const paymentIconEl = document.getElementById('paymentIcon');
+    const paymentMethodEl = document.getElementById('paymentMethod');
+    const paymentAccountEl = document.getElementById('paymentAccount');
+
+    if (paymentType === 'bank') {
+        if (paymentIconEl) paymentIconEl.textContent = '🏦';
+        if (paymentMethodEl) paymentMethodEl.textContent = `Transfer Bank ${paymentProvider}`;
+
+        const accountNumbers = {
+            'BCA': '1234567890',
+            'Mandiri': '0987654321',
+            'BNI': '1122334455',
+            'BRI': '5544332211'
+        };
+        if (paymentAccountEl) {
+            paymentAccountEl.textContent = `Rekening: ${accountNumbers[paymentProvider] || '1234567890'}`;
+        }
+    } else if (paymentType === 'ewallet') {
+        if (paymentIconEl) paymentIconEl.textContent = '💳';
+        if (paymentMethodEl) paymentMethodEl.textContent = paymentProvider;
+        if (paymentAccountEl) paymentAccountEl.textContent = 'E-Wallet';
+    }
+
+    // Clear sessionStorage setelah data dimuat (opsional)
+    // Uncomment jika ingin clear data setelah ditampilkan
+    // sessionStorage.clear();
+}
+
+// Download receipt as PDF (for now just print)
+function downloadReceipt() {
+    window.print();
+}
+
+// Go to home page
+function goToHome() {
+    window.location.href = 'beranda.html';
+}
+
+// Load data when proof page loads
+if (window.location.pathname.includes('proof.html')) {
+    window.addEventListener('DOMContentLoaded', loadReceiptData);
+}

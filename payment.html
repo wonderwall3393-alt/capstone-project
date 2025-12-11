@@ -13,36 +13,6 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo-container" id="logoContainer">
-            <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40">
-            <h3>Sphinx <span>Net.</span></h3>
-        </div>
-        <nav class="navigasi-container" id="navContainer">
-            <ul>
-                <li><a href="./beranda.html">Beranda</a></li>
-                <li><a href="./package.html">Paket</a></li>
-                <li><a href="">Informasi</a></li>
-                <li><a href="./about.html">Tentang Kita</a></li>
-            </ul>
-            <div class="button-SU-SI" id="buttonSU_SI">
-                <a class="button-login" href="./login.html">Masuk</a>
-                <a class="button-signup" href="./signup.html">Daftar</a>
-            </div>
-            <div class="user-profile" id="userProfile" style="display: none;">
-                <div class="profile-icon" onclick="goToProfile()">
-                    <i class="fa-solid fa-user"></i>
-                    <span id="userName">User</span>
-                </div>
-                <button class="logout-btn" onclick="logout()">Logout</button>
-            </div>
-        </nav>
-        <label class="box1" id="box1">
-            <input type="checkbox" id="menu">
-        </label>
-    </header>
-
     <div class="container">
         <div class="header">
             <h1>Pembayaran Paket</h1>
@@ -153,17 +123,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <div class="success-icon">✓</div>
-            <h2>Pembayaran Berhasil!</h2>
-            <p>Transaksi Anda telah berhasil diproses. Paket internet akan segera aktif dalam beberapa menit.</p>
-            <button class="modal-btn" onclick="closeModal()">Kembali ke Beranda</button>
-        </div>
-    </div>
-
     <!-- Scripts -->
     <script src="./script/script.js"></script>
     <script src="./script/auth.js"></script>

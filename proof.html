@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bukti Pembayaran - Sphinx Net</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="./style/proof.css">
+</head>
+
+<body>
+    <div class="receipt-container">
+        <div class="receipt-header">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1>Pembayaran Berhasil!</h1>
+            <p>Transaksi telah diproses dengan sukses</p>
+        </div>
+
+        <div class="receipt-body">
+            <div class="transaction-id">
+                <div class="transaction-id-label">ID Transaksi</div>
+                <div class="transaction-id-value" id="transactionId">TRX-20241211-XXXXX</div>
+            </div>
+
+            <div class="transaction-info">
+                <div class="info-row">
+                    <span class="info-label">Tanggal & Waktu</span>
+                    <span class="info-value" id="dateTime">11 Des 2024, 14:30 WIB</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Nomor Telepon</span>
+                    <span class="info-value" id="phoneNumber">08xxxxxxxxxx</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Paket Internet</span>
+                    <span class="info-value" id="packageQuota">15 GB</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Masa Aktif</span>
+                    <span class="info-value" id="packageValidity">30 Hari</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status</span>
+                    <span class="info-value" style="color: #4CAF50;">
+                        <i class="fas fa-check-circle"></i> Berhasil
+                    </span>
+                </div>
+            </div>
+
+            <div class="payment-details">
+                <h3><i class="fas fa-credit-card"></i> Detail Pembayaran</h3>
+                <div class="payment-method-info">
+                    <div class="payment-icon" id="paymentIcon">🏦</div>
+                    <div class="payment-text">
+                        <div class="payment-name" id="paymentMethod">Transfer Bank BCA</div>
+                        <div class="payment-account" id="paymentAccount">Rekening: 1234567890</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="total-section">
+                <span class="total-label">Total Pembayaran</span>
+                <span class="total-amount" id="totalAmount">Rp50.000</span>
+            </div>
+
+            <div class="notes">
+                <h4><i class="fas fa-info-circle"></i> Informasi Penting</h4>
+                <p>
+                    Paket internet Anda akan aktif dalam beberapa menit. Silakan restart perangkat Anda jika paket belum
+                    aktif setelah 5 menit.
+                    Simpan bukti pembayaran ini untuk referensi di masa mendatang.
+                </p>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-download" onclick="downloadReceipt()">
+                    <i class="fas fa-download"></i> Unduh Bukti
+                </button>
+                <button class="btn btn-home" onclick="goToHome()">
+                    <i class="fas fa-home"></i> Kembali ke Beranda
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script/script.js"></script>
+</body>
+
+</html>
