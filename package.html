@@ -1,115 +1,135 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <title>Paket Internet - Sphinx Net</title>
-    <link rel="shortcut icon" href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" type="image/x-icon">
-    <link rel="stylesheet" href="./style/package.css">
-    <link rel="stylesheet" href="./style/responsive.css">
-</head>
-<body>
+    <link
+      rel="shortcut icon"
+      href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style/package.css" />
+    <link rel="stylesheet" href="./style/responsive.css" />
+  </head>
+  <body>
     <!-- Header -->
     <header>
-        <div class="logo-container" id="logoContainer">
-            <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40">
-            <h3>Sphinx <span>Net.</span></h3>
+      <div class="logo-container" id="logoContainer">
+        <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40" />
+        <h3>Sphinx <span>Net.</span></h3>
+      </div>
+      <nav class="navigasi-container" id="navContainer">
+        <ul>
+          <li><a href="./beranda.html">Beranda</a></li>
+          <li><a href="./package.html">Paket</a></li>
+          <li><a href="./information.html">Informasi</a></li>
+          <li><a href="./about.html">Tentang Kita</a></li>
+        </ul>
+        <div class="button-SU-SI" id="buttonSU_SI">
+          <a class="button-login" href="./login.html">Masuk</a>
+          <a class="button-signup" href="./signup.html">Daftar</a>
         </div>
-        <nav class="navigasi-container" id="navContainer">
-            <ul>
-                <li><a href="./beranda.html">Beranda</a></li>
-                <li><a href="./package.html">Paket</a></li>
-                <li><a href="">Informasi</a></li>
-                <li><a href="./about.html">Tentang Kita</a></li>
-            </ul>
-            <div class="button-SU-SI" id="buttonSU_SI">
-                <a class="button-login" href="./login.html">Masuk</a>
-                <a class="button-signup" href="./signup.html">Daftar</a>
-            </div>
-            <div class="user-profile" id="userProfile" style="display: none;">
-                <div class="profile-icon" onclick="goToProfile()">
-                    <i class="fa-solid fa-user"></i>
-                    <span id="userName">User</span>
-                </div>
-                <button class="logout-btn" onclick="logout()">Logout</button>
-            </div>
-        </nav>
-        <label class="box1" id="box1">
-            <input type="checkbox" id="menu">
-        </label>
+        <div class="user-profile" id="userProfile" style="display: none">
+          <div class="profile-icon" onclick="goToProfile()">
+            <i class="fa-solid fa-user"></i>
+            <span id="userName">User</span>
+          </div>
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+      </nav>
+      <label class="box1" id="box1">
+        <input type="checkbox" id="menu" />
+      </label>
     </header>
 
     <!-- Main Content -->
     <main>
-        <!-- Page Title -->
-        <div class="page-title" id="pageTitle">
-            <h1>Koleksi Paket</h1>
-        </div>
+      <!-- Page Title -->
+      <div class="page-title" id="pageTitle">
+        <h1>Koleksi Paket</h1>
+      </div>
 
-        <!-- Navigation Tabs -->
-        <div class="package-navigation">
-            <button class="nav-tab active" onclick="showPackage('quota')">Paket Kuota</button>
-            <button class="nav-tab" onclick="showPackage('sim-credit')">Paket Pulsa</button>
-            <button class="nav-tab" onclick="showPackage('wifi')">Paket Wifi</button>
-        </div>
+      <!-- Navigation Tabs -->
+      <div class="package-navigation">
+        <button class="nav-tab active" onclick="showPackage('quota')">
+          Paket Kuota
+        </button>
+        <button class="nav-tab" onclick="showPackage('sim-credit')">
+          Paket Pulsa
+        </button>
+        <button class="nav-tab" onclick="showPackage('wifi')">
+          Paket Wifi
+        </button>
+      </div>
 
-        <!-- Paket Kuota Content (akan di-render oleh JavaScript) -->
-        <div id="quota" class="package-content active"></div>
+      <!-- Paket Kuota Content (akan di-render oleh JavaScript) -->
+      <div id="quota" class="package-content active"></div>
 
-        <!-- SIM Credit Package Content (akan di-render oleh JavaScript) -->
-        <div id="sim-credit" class="package-content"></div>
+      <!-- SIM Credit Package Content (akan di-render oleh JavaScript) -->
+      <div id="sim-credit" class="package-content"></div>
 
-        <!-- WiFi Package Content (akan di-render oleh JavaScript) -->
-        <div id="wifi" class="package-content"></div>
+      <!-- WiFi Package Content (akan di-render oleh JavaScript) -->
+      <div id="wifi" class="package-content"></div>
     </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-logo-container">
-                <img src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" alt="logo" height="150">
-                <h2 class="text-logo">Sphinx <span class="span1">Net.</span></h2>
-            </div>
-            <div class="footer-content-container">
-                <div class="footer-list">
-                    <div class="list1">
-                        <p>Paket</p>
-                        <ul>
-                            <li><a href="">paket pulsa</a></li>
-                            <li><a href="">paket wifi</a></li>
-                            <li><a href="">paket kuota</a></li>
-                        </ul>
-                    </div>
-                    <div class="list2">
-                        <p>Layanan</p>
-                        <ul>
-                            <li><a href="">masuk</a></li>
-                            <li><a href="">kontak kami</a></li>
-                            <li><a href="">tentang kami</a></li>
-                        </ul>
-                    </div>
-                    <div class="list3">
-                        <p>Infomasi</p>
-                        <ul>
-                            <li><a href="">promo</a></li>
-                            <li><a href="">berita</a></li>
-                            <li><a href="">FAQ</a></li>
-                            <li><a href="">terms & conditions</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="lisence">
-                    <p>Jl. Raya Siman, Dusun I, Demangan,<br> Kec. Siman, Kabupaten Ponorogo, <br>Jawa Timur 63471</p>
-                    <p>© 2025 Sphinx Net. All Rights Reserved.</p>
-                </div>
-            </div>
+      <div class="footer-container">
+        <div class="footer-logo-container">
+          <img
+            src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+            alt="logo"
+            height="150"
+          />
+          <h2 class="text-logo">Sphinx <span class="span1">Net.</span></h2>
         </div>
+        <div class="footer-content-container">
+          <div class="footer-list">
+            <div class="list1">
+              <p>Paket</p>
+              <ul>
+                <li><a href="">paket pulsa</a></li>
+                <li><a href="">paket wifi</a></li>
+                <li><a href="">paket kuota</a></li>
+              </ul>
+            </div>
+            <div class="list2">
+              <p>Layanan</p>
+              <ul>
+                <li><a href="">masuk</a></li>
+                <li><a href="">kontak kami</a></li>
+                <li><a href="">tentang kami</a></li>
+              </ul>
+            </div>
+            <div class="list3">
+              <p>Infomasi</p>
+              <ul>
+                <li><a href="">promo</a></li>
+                <li><a href="">berita</a></li>
+                <li><a href="">FAQ</a></li>
+                <li><a href="">terms & conditions</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="lisence">
+            <p>
+              Jl. Raya Siman, Dusun I, Demangan,<br />
+              Kec. Siman, Kabupaten Ponorogo, <br />Jawa Timur 63471
+            </p>
+            <p>© 2025 Sphinx Net. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <!-- JavaScript -->
     <script src="./script/script.js"></script>
     <script src="./script/auth.js"></script>
     <script src="./script/animation.js"></script>
-</body>
+  </body>
 </html>
