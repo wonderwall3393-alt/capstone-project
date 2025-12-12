@@ -1,185 +1,212 @@
 <!DOCTYPE html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Sphinx Net</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="./style/profile.css">
-</head>
+    <link rel="stylesheet" href="./style/profile.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="logo-container" id="logoContainer">
-            <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40">
-            <h3>Sphinx <span>Net.</span></h3>
+      <div class="logo-container" id="logoContainer">
+        <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40" />
+        <h3>Sphinx <span>Net.</span></h3>
+      </div>
+      <nav class="navigasi-container" id="navContainer">
+        <ul>
+          <li><a href="./beranda.html">Beranda</a></li>
+          <li><a href="./package.html">Paket</a></li>
+          <li><a href="./information.html">Informasi</a></li>
+          <li><a href="./about.html">Tentang Kita</a></li>
+        </ul>
+        <div class="button-SU-SI" id="buttonSU_SI">
+          <a class="button-login" href="./login.html">Masuk</a>
+          <a class="button-signup" href="./signup.html">Daftar</a>
         </div>
-        <nav class="navigasi-container" id="navContainer">
-            <ul>
-                <li><a href="./beranda.html">Beranda</a></li>
-                <li><a href="./package.html">Paket</a></li>
-                <li><a href="">Informasi</a></li>
-                <li><a href="./about.html">Tentang Kita</a></li>
-            </ul>
-            <div class="button-SU-SI" id="buttonSU_SI">
-                <a class="button-login" href="./login.html">Masuk</a>
-                <a class="button-signup" href="./signup.html">Daftar</a>
-            </div>
-            <div class="user-profile" id="userProfile" style="display: none;">
-                <div class="profile-icon" onclick="goToProfile()">
-                    <i class="fa-solid fa-user"></i>
-                    <span id="userName">User</span>
-                </div>
-                <button class="logout-btn" onclick="logout()">Logout</button>
-            </div>
-        </nav>
-        <label class="box1" id="box1">
-            <input type="checkbox" id="menu">
-        </label>
+        <div class="user-profile" id="userProfile" style="display: none">
+          <div class="profile-icon" onclick="goToProfile()">
+            <i class="fa-solid fa-user"></i>
+            <span id="userName">User</span>
+          </div>
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+      </nav>
+      <label class="box1" id="box1">
+        <input type="checkbox" id="menu" />
+      </label>
     </header>
 
     <div class="profile-container">
-        <div class="profile-content">
-            <!-- Profile Information Card (Full Width Top) -->
-            <div class="profile-card profile-info-card">
-                <div class="profile-header">
-                    <div class="profile-avatar" id="profileAvatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="profile-info">
-                        <h2 id="userNameDisplay">Loading...</h2>
-                        <p>Member sejak <span id="memberSince">Loading...</span></p>
-                    </div>
-                </div>
+      <div class="profile-content">
+        <!-- Profile Information Card (Full Width Top) -->
+        <div class="profile-card profile-info-card">
+          <div class="profile-header">
+            <div class="profile-avatar" id="profileAvatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+              <h2 id="userNameDisplay">Loading...</h2>
+              <p>Member sejak <span id="memberSince">Loading...</span></p>
+            </div>
+          </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                    <div class="profile-details">
-                        <h3>Informasi Akun</h3>
-                        <div class="info-row">
-                            <span class="info-label">Email</span>
-                            <span class="info-value" id="userEmail">Loading...</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Telepon</span>
-                            <span class="info-value" id="userPhone">Loading...</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Total Transaksi</span>
-                            <span class="info-value" id="transactionCount">0</span>
-                        </div>
-                    </div>
-
-                    <div class="current-package" id="currentPackageSection" style="display: none;">
-                        <h4>Paket Aktif</h4>
-                        <h3 id="packageName">-</h3>
-                        <p id="packageDetails">-</p>
-                    </div>
-                </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px">
+            <div class="profile-details">
+              <h3>Informasi Akun</h3>
+              <div class="info-row">
+                <span class="info-label">Email</span>
+                <span class="info-value" id="userEmail">Loading...</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Telepon</span>
+                <span class="info-value" id="userPhone">Loading...</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Total Transaksi</span>
+                <span class="info-value" id="transactionCount">0</span>
+              </div>
             </div>
 
-            <!-- Circular Usage Diagram Card -->
-            <div class="profile-card">
-                <h3 class="chart-title">Status Kuota Anda</h3>
-                <div class="usage-diagram-container">
-                    <div class="circular-chart-wrapper">
-                        <svg viewBox="0 0 36 36" class="circular-chart">
-                            <!-- Internet circle (outermost) -->
-                            <circle class="circle-bg" cx="18" cy="18" r="15.9155" />
-                            <circle class="circle circle-internet" cx="18" cy="18" r="15.9155" id="circleInternet"
-                                stroke-dasharray="0, 100" />
-
-                            <!-- Apps circle -->
-                            <circle class="circle-bg" cx="18" cy="18" r="12.9155" />
-                            <circle class="circle circle-apps" cx="18" cy="18" r="12.9155" id="circleApps"
-                                stroke-dasharray="0, 100" />
-
-                            <!-- Calls circle -->
-                            <circle class="circle-bg" cx="18" cy="18" r="9.9155" />
-                            <circle class="circle circle-calls" cx="18" cy="18" r="9.9155" id="circleCalls"
-                                stroke-dasharray="0, 100" />
-
-                            <!-- SMS circle (innermost) -->
-                            <circle class="circle-bg" cx="18" cy="18" r="6.9155" />
-                            <circle class="circle circle-sms" cx="18" cy="18" r="6.9155" id="circleSms"
-                                stroke-dasharray="0, 100" />
-                        </svg>
-                        <div class="center-icon">
-                            <i class="fas fa-wifi" style="color: #EB3F3F;"></i>
-                        </div>
-                    </div>
-
-                    <div class="usage-stats">
-                        <div class="stat-item internet">
-                            <div class="stat-left">
-                                <div class="stat-icon">
-                                    <i class="fas fa-globe"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <span class="stat-label">Sisa Internet</span>
-                                    <span class="stat-value" id="internetQuota">0 GB</span>
-                                </div>
-                            </div>
-                            <i class="fas fa-chevron-right stat-arrow"></i>
-                        </div>
-
-                        <div class="stat-item apps">
-                            <div class="stat-left">
-                                <div class="stat-icon">
-                                    <i class="fas fa-th"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <span class="stat-label">Sisa Aplikasi</span>
-                                    <span class="stat-value" id="appsQuota">0 GB</span>
-                                </div>
-                            </div>
-                            <i class="fas fa-chevron-right stat-arrow"></i>
-                        </div>
-
-                        <div class="stat-item calls">
-                            <div class="stat-left">
-                                <div class="stat-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <span class="stat-label">Sisa Telepon</span>
-                                    <span class="stat-value" id="callsQuota">0 Min</span>
-                                </div>
-                            </div>
-                            <i class="fas fa-chevron-right stat-arrow"></i>
-                        </div>
-
-                        <div class="stat-item sms">
-                            <div class="stat-left">
-                                <div class="stat-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <span class="stat-label">Sisa SMS</span>
-                                    <span class="stat-value" id="smsQuota">0 SMS</span>
-                                </div>
-                            </div>
-                            <i class="fas fa-chevron-right stat-arrow"></i>
-                        </div>
-                    </div>
-                </div>
+            <div
+              class="current-package"
+              id="currentPackageSection"
+              style="display: none"
+            >
+              <h4>Paket Aktif</h4>
+              <h3 id="packageName">-</h3>
+              <p id="packageDetails">-</p>
             </div>
-
-            <!-- Chart.js Diagram Card -->
-            <div class="profile-card">
-                <h3 class="chart-title">Analisis Penggunaan</h3>
-                <div class="chart-container">
-                    <canvas id="usageChart"></canvas>
-                </div>
-                <p class="chart-description">
-                    Berdasarkan paket yang Anda beli
-                </p>
-            </div>
+          </div>
         </div>
+
+        <!-- Circular Usage Diagram Card -->
+        <div class="profile-card">
+          <h3 class="chart-title">Status Kuota Anda</h3>
+          <div class="usage-diagram-container">
+            <div class="circular-chart-wrapper">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <!-- Internet circle (outermost) -->
+                <circle class="circle-bg" cx="18" cy="18" r="15.9155" />
+                <circle
+                  class="circle circle-internet"
+                  cx="18"
+                  cy="18"
+                  r="15.9155"
+                  id="circleInternet"
+                  stroke-dasharray="0, 100"
+                />
+
+                <!-- Apps circle -->
+                <circle class="circle-bg" cx="18" cy="18" r="12.9155" />
+                <circle
+                  class="circle circle-apps"
+                  cx="18"
+                  cy="18"
+                  r="12.9155"
+                  id="circleApps"
+                  stroke-dasharray="0, 100"
+                />
+
+                <!-- Calls circle -->
+                <circle class="circle-bg" cx="18" cy="18" r="9.9155" />
+                <circle
+                  class="circle circle-calls"
+                  cx="18"
+                  cy="18"
+                  r="9.9155"
+                  id="circleCalls"
+                  stroke-dasharray="0, 100"
+                />
+
+                <!-- SMS circle (innermost) -->
+                <circle class="circle-bg" cx="18" cy="18" r="6.9155" />
+                <circle
+                  class="circle circle-sms"
+                  cx="18"
+                  cy="18"
+                  r="6.9155"
+                  id="circleSms"
+                  stroke-dasharray="0, 100"
+                />
+              </svg>
+              <div class="center-icon">
+                <i class="fas fa-wifi" style="color: #eb3f3f"></i>
+              </div>
+            </div>
+
+            <div class="usage-stats">
+              <div class="stat-item internet">
+                <div class="stat-left">
+                  <div class="stat-icon">
+                    <i class="fas fa-globe"></i>
+                  </div>
+                  <div class="stat-info">
+                    <span class="stat-label">Sisa Internet</span>
+                    <span class="stat-value" id="internetQuota">0 GB</span>
+                  </div>
+                </div>
+                <i class="fas fa-chevron-right stat-arrow"></i>
+              </div>
+
+              <div class="stat-item apps">
+                <div class="stat-left">
+                  <div class="stat-icon">
+                    <i class="fas fa-th"></i>
+                  </div>
+                  <div class="stat-info">
+                    <span class="stat-label">Sisa Aplikasi</span>
+                    <span class="stat-value" id="appsQuota">0 GB</span>
+                  </div>
+                </div>
+                <i class="fas fa-chevron-right stat-arrow"></i>
+              </div>
+
+              <div class="stat-item calls">
+                <div class="stat-left">
+                  <div class="stat-icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div class="stat-info">
+                    <span class="stat-label">Sisa Telepon</span>
+                    <span class="stat-value" id="callsQuota">0 Min</span>
+                  </div>
+                </div>
+                <i class="fas fa-chevron-right stat-arrow"></i>
+              </div>
+
+              <div class="stat-item sms">
+                <div class="stat-left">
+                  <div class="stat-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="stat-info">
+                    <span class="stat-label">Sisa SMS</span>
+                    <span class="stat-value" id="smsQuota">0 SMS</span>
+                  </div>
+                </div>
+                <i class="fas fa-chevron-right stat-arrow"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart.js Diagram Card -->
+        <div class="profile-card">
+          <h3 class="chart-title">Analisis Penggunaan</h3>
+          <div class="chart-container">
+            <canvas id="usageChart"></canvas>
+          </div>
+          <p class="chart-description">Berdasarkan paket yang Anda beli</p>
+        </div>
+      </div>
     </div>
 
     <script src="./script/auth.js"></script>
-</body>
-
+  </body>
 </html>

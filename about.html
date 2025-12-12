@@ -1,213 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style/about.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/responsive.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+      type="image/x-icon"
+    />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>About Us - Sphinx Net</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="./style/about.css" />
-  <link rel="stylesheet" href="./style/style.css" />
-  <link rel="stylesheet" href="./style/responsive.css" />
-  <link rel="shortcut icon" href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" type="image/x-icon" />
-  <script src="https://unpkg.com/feather-icons"></script>
-  <title>About Us - Sphinx Net</title>
-</head>
-
-<body>
-  <header>
-    <div class="logo-container" id="logoContainer">
-      <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40" />
-      <h3>Sphinx <span>Net.</span></h3>
-    </div>
-    <nav class="navigasi-container" id="navContainer">
-      <ul>
-        <li><a href="./beranda.html">Beranda</a></li>
-        <li><a href="./package.html">Paket</a></li>
-        <li><a href="">Informasi</a></li>
-        <li><a href="./about.html">Tentang Kita</a></li>
-      </ul>
-      <div class="button-SU-SI" id="buttonSU_SI">
-        <a class="button-login" href="./login.html">Masuk</a>
-        <a class="button-signup" href="./signup.html">Daftar</a>
+  <body>
+    <header>
+      <div class="logo-container" id="logoContainer">
+        <img src="./assets/images/Sphinx Net Logo.png" alt="logo" height="40" />
+        <h3>Sphinx <span>Net.</span></h3>
       </div>
-      <div class="user-profile" id="userProfile" style="display: none;">
-        <div class="profile-icon" onclick="goToProfile()">
-          <i class="fa-solid fa-user"></i>
-          <span id="userName">User</span>
+      <nav class="navigasi-container" id="navContainer">
+        <ul>
+          <li><a href="./beranda.html">Beranda</a></li>
+          <li><a href="./package.html">Paket</a></li>
+          <li><a href="./information.html">Informasi</a></li>
+          <li><a href="./about.html">Tentang Kita</a></li>
+        </ul>
+        <div class="button-SU-SI" id="buttonSU_SI">
+          <a class="button-login" href="./login.html">Masuk</a>
+          <a class="button-signup" href="./signup.html">Daftar</a>
         </div>
-        <button class="logout-btn" onclick="logout()">Logout</button>
-      </div>
-    </nav>
-    <label class="box1" id="box1">
-      <input type="checkbox" id="menu" />
-    </label>
-  </header>
+        <div class="user-profile" id="userProfile" style="display: none">
+          <div class="profile-icon" onclick="goToProfile()">
+            <i class="fa-solid fa-user"></i>
+            <span id="userName">User</span>
+          </div>
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+      </nav>
+      <label class="box1" id="box1">
+        <input type="checkbox" id="menu" />
+      </label>
+    </header>
 
-  <main>
-    <section class="about-hero">
-      <div class="about-hero-content">
-        <div class="hero-logo">
-          <img src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" alt="Sphinx Net Logo" />
-        </div>
-        <h1>
-          About <span class="sphinx-red">Sphinx</span>
-          <span class="net-white">Net</span>
-        </h1>
-        <p>
-          Kami adalah penyedia layanan internet terpercaya yang berkomitmen
-          untuk menghubungkan Anda dengan dunia digital. Dengan teknologi
-          terkini dan jaringan yang luas, kami memastikan koneksi internet
-          yang cepat, stabil, dan aman untuk kebutuhan Anda.
-        </p>
-      </div>
-    </section>
-
-    <section class="about-content">
-      <div class="about-section">
-        <h2>Our Mission</h2>
-        <p>
-          Kami berkomitmen untuk menyediakan layanan internet terbaik yang
-          menghubungkan masyarakat dengan teknologi terkini. Dengan jaringan
-          yang luas dan stabil, kami memastikan setiap pelanggan mendapatkan
-          pengalaman internet yang cepat, aman, dan terpercaya.
-        </p>
-      </div>
-
-      <div class="about-section">
-        <h2>Why Choose Us?</h2>
-        <p>
-          Sphinx Net hadir dengan teknologi terdepan, harga yang kompetitif,
-          dan layanan pelanggan 24/7. Kami memahami kebutuhan digital Anda dan
-          siap memberikan solusi terbaik untuk rumah, bisnis, dan aktivitas
-          online Anda.
-        </p>
-      </div>
-    </section>
-
-    <section class="team-section">
-      <h2>Our Team</h2>
-      <div class="team-grid">
-        <div class="team-member">
-          <img src="https://via.placeholder.com/150" alt="Farid Fajar Maulana" />
-          <h3>Farid Fajar Maulana</h3>
-          <p>FullStack Web Developer</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/150" alt="Ghulam Mushthofa" />
-          <h3>Ghulam Mushthofa</h3>
-          <p>FullStack Web Developer</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/150" alt="Ahmad Nugrahadi" />
-          <h3>Ahmad Nugrahadi</h3>
-          <p>FullStack Web Developer</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/150" alt="Nasrun Adetiya" />
-          <h3>Nasrun Adetiya</h3>
-          <p>Machine Learning Engineer</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/150" alt="Fathan Reza" />
-          <h3>Fathan Reza</h3>
-          <p>Machine Learning Engineer</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="values-section">
-      <h2>Our Values</h2>
-      <div class="values-grid">
-        <div class="value-card">
-          <i class="fa-solid fa-rocket"></i>
-          <h3>Innovation</h3>
+    <main>
+      <section class="about-hero">
+        <div class="about-hero-content">
+          <div class="hero-logo">
+            <img
+              src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+              alt="Sphinx Net Logo"
+            />
+          </div>
+          <h1>
+            About <span class="sphinx-red">Sphinx</span>
+            <span class="net-white">Net</span>
+          </h1>
           <p>
-            Kami selalu berinovasi untuk memberikan layanan terbaik dengan
-            teknologi terkini.
+            Kami adalah penyedia layanan internet terpercaya yang berkomitmen
+            untuk menghubungkan Anda dengan dunia digital. Dengan teknologi
+            terkini dan jaringan yang luas, kami memastikan koneksi internet
+            yang cepat, stabil, dan aman untuk kebutuhan Anda.
           </p>
         </div>
-        <div class="value-card">
-          <i class="fa-solid fa-shield-halved"></i>
-          <h3>Reliability</h3>
+      </section>
+
+      <section class="about-content">
+        <div class="about-section">
+          <h2>Our Mission</h2>
           <p>
-            Jaringan yang stabil dan aman adalah prioritas utama kami untuk
-            kepuasan pelanggan.
+            Kami berkomitmen untuk menyediakan layanan internet terbaik yang
+            menghubungkan masyarakat dengan teknologi terkini. Dengan jaringan
+            yang luas dan stabil, kami memastikan setiap pelanggan mendapatkan
+            pengalaman internet yang cepat, aman, dan terpercaya.
           </p>
         </div>
-        <div class="value-card">
-          <i class="fa-solid fa-users"></i>
-          <h3>Customer First</h3>
+
+        <div class="about-section">
+          <h2>Why Choose Us?</h2>
           <p>
-            Kepuasan pelanggan adalah tujuan kami. Kami siap melayani Anda 24
-            Jam.
+            Sphinx Net hadir dengan teknologi terdepan, harga yang kompetitif,
+            dan layanan pelanggan 24 jam. Kami memahami kebutuhan digital Anda
+            dan siap memberikan solusi terbaik untuk rumah, bisnis, dan
+            aktivitas online Anda.
           </p>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer>
-    <div class="footer-container">
-      <div class="footer-logo-container">
-        <img src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png" alt="logo" height="150" />
-        <h2 class="text-logo">Sphinx <span class="span1">Net.</span></h2>
-      </div>
-      <div class="footer-content-container">
-        <div class="footer-list">
-          <div class="list1">
-            <p>Package & Price</p>
-            <ul>
-              <li><a href="">sim credit package</a></li>
-              <li><a href="">wifi package</a></li>
-              <li><a href="">quota package</a></li>
-            </ul>
+      <section class="team-section">
+        <h2>Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Farid Fajar Maulana"
+            />
+            <h3>Farid Fajar Maulana</h3>
+            <p>FullStack Web Developer</p>
           </div>
-          <div class="list2">
-            <p>Service</p>
-            <ul>
-              <li><a href="">sign-up</a></li>
-              <li><a href="">contact us</a></li>
-              <li><a href="">about us</a></li>
-            </ul>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Ghulam Mushthofa" />
+            <h3>Ghulam Mushthofa</h3>
+            <p>FullStack Web Developer</p>
           </div>
-          <div class="list3">
-            <p>Information</p>
-            <ul>
-              <li><a href="">promo</a></li>
-              <li><a href="">news</a></li>
-              <li><a href="">FAQ</a></li>
-              <li><a href="">terms & conditions</a></li>
-            </ul>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Ahmad Nugrahadi" />
+            <h3>Ahmad Nugrahadi</h3>
+            <p>FullStack Web Developer</p>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Nasrun Adetiya" />
+            <h3>Nasrun Adetiya</h3>
+            <p>Machine Learning Engineer</p>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Fathan Reza" />
+            <h3>Fathan Reza</h3>
+            <p>Machine Learning Engineer</p>
           </div>
         </div>
-        <div class="lisence">
-          <p>
-            Jl. Raya Siman, Dusun I, Demangan,<br />
-            Kec. Siman, Kabupaten Ponorogo, <br />Jawa Timur 63471
-          </p>
-          <p>© 2025 Sphinx Net. All Rights Reserved.</p>
-          <div class="up-button">
-            <a href="#"><i class="fa-solid fa-chevron-up"></i></a>
+      </section>
+
+      <section class="values-section">
+        <h2>Our Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <i class="fa-solid fa-rocket"></i>
+            <h3>Innovation</h3>
+            <p>
+              Kami selalu berinovasi untuk memberikan layanan terbaik dengan
+              teknologi terkini.
+            </p>
+          </div>
+          <div class="value-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>Reliability</h3>
+            <p>
+              Jaringan yang stabil dan aman adalah prioritas utama kami untuk
+              kepuasan pelanggan.
+            </p>
+          </div>
+          <div class="value-card">
+            <i class="fa-solid fa-users"></i>
+            <h3>Customer First</h3>
+            <p>
+              Kepuasan pelanggan adalah tujuan kami. Kami siap melayani Anda 24
+              Jam.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo-container">
+          <img
+            src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
+            alt="logo"
+            height="150"
+          />
+          <h2 class="text-logo">Sphinx <span class="span1">Net.</span></h2>
+        </div>
+        <div class="footer-content-container">
+          <div class="footer-list">
+            <div class="list1">
+              <p>Paket</p>
+              <ul>
+                <li><a href="./package.html">paket pulsa</a></li>
+                <li><a href="./package.html">paket wifi</a></li>
+                <li><a href="./package.html">paket kuota</a></li>
+              </ul>
+            </div>
+            <div class="list2">
+              <p>Layanan</p>
+              <ul>
+                <li><a href="./beranda.html">masuk</a></li>
+                <li>
+                  <a href="./information.html#contact-section">kontak kami</a>
+                </li>
+                <li><a href="./about.html">tentang kami</a></li>
+              </ul>
+            </div>
+            <div class="list3">
+              <p>Informasi</p>
+              <ul>
+                <li><a href="./information.html#news-section">promo</a></li>
+                <li><a href="./information.html#news-section">berita</a></li>
+                <li><a href="./information.html#faq-section">FAQ</a></li>
+                <li><a href="#">terms & conditions</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="lisence">
+            <p>
+              Jl. Raya Siman, Dusun I, Demangan,<br />Kec. Siman, Kabupaten
+              Ponorogo, <br />Jawa Timur 63471
+            </p>
+            <p>© 2025 Sphinx Net. All Rights Reserved.</p>
+            <div class="up-button">
+              <a href="#"><i class="fa-solid fa-chevron-up"></i></a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Scripts -->
-  <script src="./script/auth.js"></script>
-  <script>
-    feather.replace();
+    <!-- Scripts -->
+    <script src="./script/auth.js"></script>
+    <script>
+      feather.replace();
 
-    const toggleActive = document.querySelector(".navigasi-container");
-    const box1 = document.querySelector("#menu");
+      const toggleActive = document.querySelector(".navigasi-container");
+      const box1 = document.querySelector("#menu");
 
-    box1.addEventListener("click", () => {
-      toggleActive.classList.toggle("active");
-    });
-  </script>
-</body>
-
+      box1.addEventListener("click", () => {
+        toggleActive.classList.toggle("active");
+      });
+    </script>
+  </body>
 </html>
