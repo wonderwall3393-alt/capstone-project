@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: sphinxnet-app
+    restart: unless-stopped
+    environment:
+      - FLASK_APP=hybrid_ml_survey_server.py
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+      - CORS_ORIGINS=${COOLIFY_DOMAIN_0_DOMAIN:-https://sphinxnet.nexawebs.com},http://localhost:3000
+      - SECRET_KEY=${COOLIFY_SECRET_KEY:-sphinx-secret-key-change-in-production}
+      - DATABASE_URL=sqlite:///data/telco_users.db
+      - API_HOST=0.0.0.0
+      - API_PORT=5000
+    volumes:
+      - sphinxnet_data:/app/data
+      - sphinxnet_logs:/app/logs
+      - ./backend:/app/backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      # Traefik labels untuk Coolify
+      - traefik.enable=true
+      - traefik.http.routers.sphinxnet-api.rule=Host(`${COOLIFY_DOMAIN_0_DOMAIN:-sphinxnet.nexawebs.com}`) && PathPrefix(`/api`)
+      - traefik.http.routers.sphinxnet-api.tls=true
+      - traefik.http.routers.sphinxnet-api.tls.certresolver=letsencrypt
+      - traefik.http.services.sphinxnet-api.loadbalancer.server.port=5000
+    networks:
+      - sphinxnet-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: sphinxnet-nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/sites-available:/etc/nginx/sites-available:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./:/var/www/html:ro
+    depends_on:
+      - app
+    labels:
+      # Traefik labels untuk Coolify
+      - traefik.enable=true
+      - traefik.http.routers.sphinxnet.rule=Host(`${COOLIFY_DOMAIN_0_DOMAIN:-sphinxnet.nexawebs.com}`)
+      - traefik.http.routers.sphinxnet.tls=true
+      - traefik.http.routers.sphinxnet.tls.certresolver=letsencrypt
+      - traefik.http.services.sphinxnet.loadbalancer.server.port=80
+    networks:
+      - sphinxnet-network
+
+networks:
+  sphinxnet-network:
+    driver: bridge
+
+volumes:
+  sphinxnet_data:
+    driver: local
+  sphinxnet_logs:
+    driver: local
