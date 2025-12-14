@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./style/about.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
     <link rel="stylesheet" href="./style/style.css" />
     <link rel="stylesheet" href="./style/responsive.css" />
+    <link rel="stylesheet" href="./style/about.css" />
     <link
       rel="shortcut icon"
       href="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
@@ -33,7 +32,7 @@
           <li><a href="./beranda.html">Beranda</a></li>
           <li><a href="./package.html">Paket</a></li>
           <li><a href="./information.html">Informasi</a></li>
-          <li><a href="./about.html">Tentang Kita</a></li>
+          <li><a href="./about.html" class="active">Tentang Kita</a></li>
         </ul>
         <div class="button-SU-SI" id="buttonSU_SI">
           <a class="button-login" href="./login.html">Masuk</a>
@@ -54,7 +53,7 @@
 
     <main>
       <section class="about-hero">
-        <div class="about-hero-content">
+        <div class="about-hero-content" data-aos="fade-up">
           <div class="hero-logo">
             <img
               src="./assets/images/Sphinx_Net_Logo-removebg-preview (1).png"
@@ -69,13 +68,13 @@
             Kami adalah penyedia layanan internet terpercaya yang berkomitmen
             untuk menghubungkan Anda dengan dunia digital. Dengan teknologi
             terkini dan jaringan yang luas, kami memastikan koneksi internet
-            yang cepat, stabil, dan aman untuk kebutuhan Anda.
+            yang cepat, stabil, dan aman.
           </p>
         </div>
       </section>
 
       <section class="about-content">
-        <div class="about-section">
+        <div class="about-section" data-aos="fade-up" data-aos-delay="100">
           <h2>Our Mission</h2>
           <p>
             Kami berkomitmen untuk menyediakan layanan internet terbaik yang
@@ -85,7 +84,7 @@
           </p>
         </div>
 
-        <div class="about-section">
+        <div class="about-section" data-aos="fade-up" data-aos-delay="200">
           <h2>Why Choose Us?</h2>
           <p>
             Sphinx Net hadir dengan teknologi terdepan, harga yang kompetitif,
@@ -97,43 +96,85 @@
       </section>
 
       <section class="team-section">
-        <h2>Our Team</h2>
+        <h2 data-aos="fade-down">Our Team</h2>
         <div class="team-grid">
-          <div class="team-member">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Farid Fajar Maulana"
-            />
-            <h3>Farid Fajar Maulana</h3>
-            <p>FullStack Web Developer</p>
+          <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+            <div class="member-photo">
+              <img
+                src="./assets/images/01_farid_f.webp"
+                alt="Farid Fajar Maulana"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="member-info">
+              <h3>Farid Fajar Maulana</h3>
+              <p>FullStack Web Developer</p>
+            </div>
           </div>
-          <div class="team-member">
-            <img src="https://via.placeholder.com/150" alt="Ghulam Mushthofa" />
-            <h3>Ghulam Mushthofa</h3>
-            <p>FullStack Web Developer</p>
+          <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+            <div class="member-photo">
+              <img
+                src="./assets/images/02_ghulam_m.webp"
+                alt="Ghulam Mushthofa"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="member-info">
+              <h3>Ghulam Mushthofa</h3>
+              <p>FullStack Web Developer</p>
+            </div>
           </div>
-          <div class="team-member">
-            <img src="https://via.placeholder.com/150" alt="Ahmad Nugrahadi" />
-            <h3>Ahmad Nugrahadi</h3>
-            <p>FullStack Web Developer</p>
+          <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+            <div class="member-photo">
+              <img
+                src="./assets/images/03_a_nugrahadi.webp"
+                alt="Ahmad Nugrahadi"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="member-info">
+              <h3>Ahmad Nugrahadi</h3>
+              <p>FullStack Web Developer</p>
+            </div>
           </div>
-          <div class="team-member">
-            <img src="https://via.placeholder.com/150" alt="Nasrun Adetiya" />
-            <h3>Nasrun Adetiya</h3>
-            <p>Machine Learning Engineer</p>
+          <div class="team-member" data-aos="fade-up" data-aos-delay="400">
+            <div class="member-photo">
+              <img
+                src="./assets/images/04_nasrun_a.webp"
+                alt="Nasrun Adetiya"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="member-info">
+              <h3>Nasrun Adetiya</h3>
+              <p>Machine Learning Engineer</p>
+            </div>
           </div>
-          <div class="team-member">
-            <img src="https://via.placeholder.com/150" alt="Fathan Reza" />
-            <h3>Fathan Reza</h3>
-            <p>Machine Learning Engineer</p>
+          <div class="team-member" data-aos="fade-up" data-aos-delay="500">
+            <div class="member-photo">
+              <img
+                src="./assets/images/05_fathan_r.webp"
+                alt="Fathan Reza"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="member-info">
+              <h3>Fathan Reza</h3>
+              <p>Machine Learning Engineer</p>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="values-section">
-        <h2>Our Values</h2>
+        <h2 data-aos="fade-down">Our Values</h2>
         <div class="values-grid">
-          <div class="value-card">
+          <div class="value-card" data-aos="zoom-in" data-aos-delay="100">
             <i class="fa-solid fa-rocket"></i>
             <h3>Innovation</h3>
             <p>
@@ -141,7 +182,7 @@
               teknologi terkini.
             </p>
           </div>
-          <div class="value-card">
+          <div class="value-card" data-aos="zoom-in" data-aos-delay="200">
             <i class="fa-solid fa-shield-halved"></i>
             <h3>Reliability</h3>
             <p>
@@ -149,7 +190,7 @@
               kepuasan pelanggan.
             </p>
           </div>
-          <div class="value-card">
+          <div class="value-card" data-aos="zoom-in" data-aos-delay="300">
             <i class="fa-solid fa-users"></i>
             <h3>Customer First</h3>
             <p>
@@ -184,7 +225,7 @@
             <div class="list2">
               <p>Layanan</p>
               <ul>
-                <li><a href="./beranda.html">masuk</a></li>
+                <li><a href="./login.html">masuk</a></li>
                 <li>
                   <a href="./information.html#contact-section">kontak kami</a>
                 </li>
@@ -215,17 +256,31 @@
       </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="./script/auth.js"></script>
     <script>
       feather.replace();
-
-      const toggleActive = document.querySelector(".navigasi-container");
-      const box1 = document.querySelector("#menu");
-
-      box1.addEventListener("click", () => {
-        toggleActive.classList.toggle("active");
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+        offset: 100,
       });
+
+      const menuCheckbox = document.getElementById("menu");
+      const navContainer = document.getElementById("navContainer");
+
+      if (menuCheckbox && navContainer) {
+        menuCheckbox.addEventListener("change", function () {
+          if (this.checked) {
+            navContainer.classList.add("active");
+          } else {
+            navContainer.classList.remove("active");
+          }
+        });
+      }
     </script>
   </body>
 </html>

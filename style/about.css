@@ -3,45 +3,57 @@
   src: url(../assets/fonts/Inter-VariableFont_opsz\wght.ttf);
 }
 
-/* Main Content */
-main {
-  margin-top: 50px;
+/* ===== ANIMASI PAGE LOAD ===== */
+body {
+  overflow-x: hidden;
 }
 
-/* Hero Section */
+main {
+  margin-top: 50px;
+  animation: pageLoadFade 0.6s ease-in-out;
+}
+
+@keyframes pageLoadFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== HERO SECTION ===== */
 .about-hero {
-  /* Gradient Gelap + Gambar cheerful */
   background-image: linear-gradient(
       135deg,
       rgba(0, 0, 0, 0.85) 0%,
       rgba(26, 26, 26, 0.75) 100%
     ),
     url(../assets/images/cheerful-young-people-with-smartphones.jpg);
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
   padding: 120px 80px 80px;
   color: #fff;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  min-height: 65vh;
+  min-height: 60vh;
   position: relative;
 }
 
 .about-hero-content {
-  max-width: 900px;
+  max-width: 800px;
   text-align: left;
   position: relative;
   z-index: 2;
 }
 
 .hero-logo {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
-
 .hero-logo img {
   width: 80px;
   height: 80px;
@@ -50,16 +62,14 @@ main {
 
 .about-hero h1 {
   font-size: 48px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-weight: 700;
   font-family: inter;
   text-align: left;
 }
-
 .about-hero h1 .sphinx-red {
   color: #eb3f3f;
 }
-
 .about-hero h1 .net-white {
   color: #fff;
 }
@@ -72,39 +82,33 @@ main {
   text-align: left;
 }
 
-/* CSS untuk 'Connecting People' SUDAH DIHAPUS DISINI */
-
-/* About Content */
+/* ===== ABOUT CONTENT ===== */
 .about-content {
   padding: 80px 120px;
   background-color: #fff;
 }
-
 .about-section {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
+  text-align: center;
 }
-
 .about-section h2 {
   font-size: 36px;
   color: #eb3f3f;
-  margin-bottom: 30px;
-  text-align: center;
+  margin-bottom: 20px;
   font-family: inter;
 }
-
 .about-section p {
   font-size: 16px;
   line-height: 1.8;
   color: #333;
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto 40px;
+  max-width: 800px;
+  margin: 0 auto;
   font-family: inter;
 }
 
-/* Team Section */
+/* ===== TEAM SECTION (LAYOUT FIX 3 ATAS - 2 BAWAH) ===== */
 .team-section {
-  background-color: #ededed;
+  background-color: #f9f9f9;
   padding: 80px 120px;
 }
 
@@ -116,56 +120,89 @@ main {
   font-family: inter;
 }
 
+/* 1. Gunakan Flexbox agar elemen sisa (baris bawah) otomatis ke tengah */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  display: flex;
+  flex-wrap: wrap; /* Izinkan turun ke baris baru */
+  justify-content: center; /* Rata tengah horizontal */
+  gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* 2. Style Kartu Anggota */
 .team-member {
   background-color: #fff;
-  border-radius: 11px;
-  padding: 30px;
+  border-radius: 16px; /* Sudut melengkung di luar */
+  overflow: hidden; /* Kunci: Agar foto mengikuti sudut melengkung container */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+
+  /* Reset Padding Container (Agar foto mentok pinggir) */
+  padding: 0;
+
+  /* Ukuran Kartu:  */
+  /* flex-basis: sekitar 30% agar muat 3 per baris dengan gap */
+  flex: 0 1 350px;
+  min-width: 280px;
 }
 
 .team-member:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 30px rgba(235, 63, 63, 0.15);
 }
 
-.team-member img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 20px;
-  border: 4px solid #eb3f3f;
+/* 3. Style Foto (Full Container & Persegi Panjang) */
+.member-photo {
+  width: 100%;
+  height: 380px; /* Tinggi foto fix agar seragam */
+  overflow: hidden;
+  border-bottom: 4px solid #eb3f3f; /* Garis merah pemisah foto & teks */
+  margin: 0; /* Hapus margin agar nempel */
 }
 
-.team-member h3 {
-  font-size: 22px;
-  color: #000;
-  margin-bottom: 10px;
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Foto memenuhi kotak tanpa gepeng */
+  object-position: top center; /* Fokus ke wajah/atas */
+  transition: transform 0.5s ease;
+  border-radius: 0; /* Pastikan foto tidak bulat */
+  border: none; /* Hapus border lama jika ada */
+}
+
+.team-member:hover .member-photo img {
+  transform: scale(1.05); /* Efek zoom dikit saat hover */
+}
+
+/* 4. Style Info Teks (Nama & Jabatan) */
+/* Kita pindahkan padding ke sini agar teks rapi tidak mepet pinggir */
+.member-info {
+  padding: 25px 20px;
+}
+
+.member-info h3 {
+  font-size: 20px;
+  color: #333;
+  margin: 0 0 8px 0;
   font-family: inter;
+  font-weight: 700;
 }
 
-.team-member p {
+.member-info p {
   font-size: 14px;
-  color: #666;
+  color: #eb3f3f; /* Warna merah sesuai tema */
   margin: 0;
   font-family: inter;
+  font-weight: 600;
 }
 
-/* Values Section */
+/* ===== VALUES SECTION ===== */
 .values-section {
   padding: 80px 120px;
   background-color: #fff;
 }
-
 .values-section h2 {
   font-size: 36px;
   color: #eb3f3f;
@@ -183,60 +220,54 @@ main {
 }
 
 .value-card {
-  background-color: #ededed;
-  border-radius: 11px;
+  background-color: #fff;
+  border: 2px solid #f0f0f0;
+  border-radius: 16px;
   padding: 40px;
   text-align: center;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .value-card:hover {
-  background-color: #eb3f3f;
-  color: #fff;
+  border-color: #eb3f3f;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(235, 63, 63, 0.1);
 }
 
 .value-card i {
   font-size: 50px;
   color: #eb3f3f;
   margin-bottom: 20px;
-  transition: color 0.3s;
+  transition: transform 0.3s;
 }
 
 .value-card:hover i {
-  color: #fff;
+  transform: scale(1.1);
 }
 
 .value-card h3 {
   font-size: 24px;
   margin-bottom: 15px;
   font-family: inter;
+  color: #333;
 }
 
 .value-card p {
   font-size: 15px;
   line-height: 1.6;
   font-family: inter;
+  color: #666;
 }
 
-.value-card:hover p {
-  color: #ededed;
-}
+/* ===== RESPONSIVE ===== */
 
-/* Responsive */
 @media screen and (max-width: 970px) {
   .about-hero {
     padding: 100px 40px 60px;
   }
-
   .about-hero h1 {
     font-size: 36px;
   }
-
-  .hero-logo img {
-    width: 60px;
-    height: 60px;
-  }
-
   .about-content,
   .team-section,
   .values-section {
@@ -247,148 +278,50 @@ main {
 @media screen and (max-width: 768px) {
   .about-hero {
     padding: 80px 30px 50px;
+    text-align: center;
+    justify-content: center;
   }
-
-  .about-hero h1 {
-    font-size: 32px;
+  .about-hero-content {
+    text-align: center;
   }
-
+  .about-hero h1,
   .about-hero p {
-    font-size: 16px;
-  }
-
-  .hero-logo img {
-    width: 50px;
-    height: 50px;
+    text-align: center;
   }
 
   .about-content,
   .team-section,
   .values-section {
-    padding: 50px 30px;
+    padding: 50px 20px;
   }
-
   .about-section h2,
   .team-section h2,
   .values-section h2 {
     font-size: 30px;
   }
+
+  .member-photo {
+    height: 300px;
+  }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 480px) {
   .about-hero {
     padding: 70px 20px 40px;
   }
-
   .about-hero h1 {
     font-size: 28px;
   }
-
   .about-hero p {
     font-size: 15px;
   }
 
-  .hero-logo {
-    margin-bottom: 20px;
+  /* Di HP jadi 1 kolom full */
+  .team-member {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
-
-  .hero-logo img {
-    width: 40px;
-    height: 40px;
-  }
-
-  .about-section h2,
-  .team-section h2,
-  .values-section h2 {
-    font-size: 26px;
-  }
-
-  .team-grid,
-  .values-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .about-content,
-  .team-section,
-  .values-section {
-    padding: 40px 20px;
-  }
-}
-
-@media screen and (max-width: 440px) {
-  .about-hero {
-    padding: 60px 20px 40px;
-  }
-
-  .about-hero h1 {
-    font-size: 24px;
-  }
-
-  .about-hero p {
-    font-size: 14px;
-  }
-
-  .hero-logo img {
-    width: 35px;
-    height: 35px;
-  }
-
-  .about-section h2,
-  .team-section h2,
-  .values-section h2 {
-    font-size: 22px;
-  }
-
-  .value-card {
-    padding: 30px 20px;
-  }
-
-  .value-card i {
-    font-size: 40px;
-  }
-
-  .value-card h3 {
-    font-size: 20px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .about-hero {
-    padding: 50px 15px 30px;
-  }
-
-  .about-hero h1 {
-    font-size: 20px;
-  }
-
-  .about-hero p {
-    font-size: 13px;
-  }
-
-  .hero-logo img {
-    width: 30px;
-    height: 30px;
-  }
-
-  .about-content,
-  .team-section,
-  .values-section {
-    padding: 30px 15px;
-  }
-
-  .about-section h2,
-  .team-section h2,
-  .values-section h2 {
-    font-size: 20px;
-  }
-
-  .team-member img {
-    width: 120px;
-    height: 120px;
-  }
-
-  .team-member h3 {
-    font-size: 18px;
+  .member-photo {
+    height: 320px;
   }
 }
