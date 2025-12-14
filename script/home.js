@@ -543,10 +543,6 @@ function displayRecommendations(recommendations, metadata = null) {
             <div class="stat-item survey-stat">
                 <span>Survey Analysis: ${surveyCount} paket</span>
             </div>
-            <button class="clear-results-btn" onclick="clearSurveyResults()" title="Hapus hasil survey">
-                <i class="fa-solid fa-trash"></i>
-                Hapus Hasil
-            </button>
         </div>
         <div class="recommendation-subtitle">Total ${recommendations.length} rekomendasi ditemukan</div>
     `;
