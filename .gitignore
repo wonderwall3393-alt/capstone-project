@@ -1,0 +1,6 @@
+._*
+.DS_Store
+.AppleDouble
+__pycache__/
+*.pyc
+*.db
